@@ -1,6 +1,6 @@
 from recherche import Recherche
 from  DAO import rechercheDAO 
-class Recherche_30j(Recherche):
+class Recherche_dispo(Recherche):
 
     def __init__(self, profil: Profil, trajet: Trajet) -> None:
         super().__init__()
@@ -16,6 +16,8 @@ class Recherche_30j(Recherche):
     def creer_alerte(self, trajet, profil, choix):
         if choix == "oui":
             rechercheDAO.creer_alerte(trajet, profil)
+
+    
     
     
         
