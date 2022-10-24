@@ -8,10 +8,10 @@ class Recherche_30j(Recherche):
         self.trajet=trajet
 
     def recherche(self,trajet):
-        return find_by_id(trajet)
+        return rechercheDAO.find_by_id(trajet)
     
-    def sauvegarder(self, trajet,profil):
-        rechercheDAO.sauvegarder(trajet,profil)
+    def sauvegarder(self, trajet, profil):
+        rechercheDAO.sauvegarder(trajet, profil)
     
     
         

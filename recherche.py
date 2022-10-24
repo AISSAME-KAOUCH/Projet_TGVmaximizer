@@ -5,7 +5,7 @@ class Recherche(ABC):
         super().__init__()
     
     def recherche(self,trajet):
-        pass #test
+        pass
     
     def sauvegarder(self,trajet):
         pass
