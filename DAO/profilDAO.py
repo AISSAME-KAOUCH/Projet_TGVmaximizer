@@ -59,4 +59,4 @@ class ProfilDAO(metaclass=Singleton):
                         , "mdp": profil._mot_de_passe
                         , "civilite" : profil._civilite
                         , "birthday" : profil._date_de_naissance})
-                res = cursor.all()
+                res = cursor.fetchall()
