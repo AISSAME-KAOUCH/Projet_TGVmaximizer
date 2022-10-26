@@ -3,7 +3,7 @@ from business_object.profil import Profil
 
 class ProfilDAO(metaclass=Singleton):
     
-    def create(self, email : str) -> Profil:
+    def find_by_id(self, email : str) -> Profil:
 
         request = "SELECT * FROM profil" \
                   "WHERE email = %(email)s"
@@ -23,23 +23,33 @@ class ProfilDAO(metaclass=Singleton):
         return profil
 
     def modifier_mot_de_passe(profil_modifie):
-        mdp = profil_modifie._mot_de_passe
-        email = profil_modifie.email
+
         request = "UPDATE profil" \
                   "SET mot_de_passe = '%(mdp)s'" \
-                  "WHERE email = '%(email)s'" 
+                  "WHERE email = '%(email)s'"
+
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute( 
+                    request, {"email" : email, "mdp" : profil_modifie._mot_de_passe}
+                )
 
     def modifier_profil(profil_modifie):
-        nom = profil_modifie._nom
-        prenom = profil_modifie._prenom
-        email = profil_modifie.email 
-        civilite = profil_modifie._civilite
-        date_de_naissance = profil_modifie._date_de_naissance
+
         request = "UPDATE profil" \
-                  "SET nom = %(nom)s,"\ 
-                  "prenom = %(prenom)s"\ 
-                  ",civilite = %(civilite)s,\ 
-                  "date_de_naissance = %(date_de_naissance)s"\
+                  "SET nom = %(nom)s"\ 
+                  ",prenom = %(prenom)s"\ 
+                  ",civilite = %(civilite)s"\ 
+                  ",date_de_naissance = %(date_de_naissance)s"\
                   ",email = %(email)s" \
-                  "WHERE email = '%(email)s'" 
+                  "WHERE email = '%(email)s'"
+          with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute( 
+                    request, {"email" : profil_modifie.email, "nom" : profil_modifie.nom, "prenom" : profil_modifie.prenom, "civilite": profil_modifie.civilite, "date_de_naissance": profil_modifie.date_de_naissance}
+                )
+                res = cursor.fetchall() 
+    
+    def create_profil(profil):
+        pass
     
