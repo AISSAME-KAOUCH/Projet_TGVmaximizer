@@ -1,6 +1,7 @@
 from DAO.db_connection import DBConnection
 from business_object.profil import Profil
 import requests
+from singleton import Singleton
 
 class ProfilDAO(metaclass=Singleton):
     
@@ -23,7 +24,7 @@ class ProfilDAO(metaclass=Singleton):
                         mot_de_passe = res['mot_de_passe'])
         return profil
 
-    def modifier_mot_de_passe(profil_modifie):
+    def modifier_mot_de_passe(profil_modifie : Profil):
 
         request = "UPDATE profil" \
                   "SET mot_de_passe = '%(mdp)s'" \
@@ -32,7 +33,7 @@ class ProfilDAO(metaclass=Singleton):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute( 
-                    request, {"email" : email, "mdp" : profil_modifie._mot_de_passe}
+                    request, {"email" : profil_modifie.email, "mdp" : profil_modifie._mot_de_passe}
                 )
 
     def modifier_profil(profil_modifie):
@@ -47,6 +48,19 @@ class ProfilDAO(metaclass=Singleton):
                 )
                 res = cursor.fetchall() 
     
-    def create_profil(profil):
-        pass
-    
+    def create_profil(profil : Profil):
+        with DBConnection().connection as connection :
+            with connection.cursor() as cursor :
+                cursor.execute('INSERT INTO profil (email,nom,prenom,mdp,civilite,birthday) '\
+                    'VALUES (%(email)s, %(nom)s,%(prenom)s,%(mdp)s,%(civilite)s,%(birthday)s)'\
+                        ,{"email": profil.email
+                        , "nom" : profil._nom
+                        , "prenom" : profil._prenom
+                        , "mdp": profil._mot_de_passe
+                        , "civilite" : profil._civilite
+                        , "birthday" : profil._date_de_naissance})
+                res = cursor.fetchone()
+
+profil = Profil('ilyass', 'el fikri', '13/12/2001','mr', 'mail', 'pass')
+profildao = ProfilDAO()
+profildao.create_profil(profil)
