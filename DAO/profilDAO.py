@@ -1,5 +1,6 @@
-from db_connection import DBConnection
+from DAO.db_connection import DBConnection
 from business_object.profil import Profil
+import requests
 
 class ProfilDAO(metaclass=Singleton):
     
@@ -36,14 +37,10 @@ class ProfilDAO(metaclass=Singleton):
 
     def modifier_profil(profil_modifie):
 
-        request = "UPDATE profil" \
-                  "SET nom = %(nom)s"\ 
-                  ",prenom = %(prenom)s"\ 
-                  ",civilite = %(civilite)s"\ 
-                  ",date_de_naissance = %(date_de_naissance)s"\
-                  ",email = %(email)s" \
+        request = "UPDATE profil SET" \
+                  "nom = %(nom)s ,prenom = %(prenom)s, civilite = %(civilite)s, date_de_naissance = %(date_de_naissance)s, email = %(email)s" \
                   "WHERE email = '%(email)s'"
-          with DBConnection().connection as connection:
+        with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute( 
                     request, {"email" : profil_modifie.email, "nom" : profil_modifie.nom, "prenom" : profil_modifie.prenom, "civilite": profil_modifie.civilite, "date_de_naissance": profil_modifie.date_de_naissance}
