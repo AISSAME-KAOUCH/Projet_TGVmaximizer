@@ -36,27 +36,39 @@ class Profil :
         self._mot_de_passe = new_pass
         print('Mot de passe modifié avec succès.')
     
-    def modifier_profil(self):
-        info = ["civilite", "nom", "prenom", "date_de_naissance"]
-        attribut = []
-        for i in range(0,4) : 
-            res = input('Voulez-vous modifier votre {} ? (Oui/Non)'.format(info[i]))
-            if res == 'Oui' : 
-                if i ==3 : 
-                    attribut.append(input("Quelle est votre modification (JJ-MM-YYYY) ?"))
-                else :
-                    attribut.append(input("Quelle est votre modification ?"))
-            else : 
-                attribut.append(None)
-        if attribut[0] is not None : 
-            self._civilite = attribut[0] 
-        if attribut[1] is not None : 
-            self._nom = attribut[1] 
-        if attribut[2] is not None : 
-            self._prenom = attribut[2] 
-        if attribut[3] is not None : 
-            self._date_de_naissance = attribut[3] 
+    def modifier_nom(self,nom):
+        self._nom = nom
+    
+    def modifier_prenom(self,prenom):
+        self._prenom = prenom
 
+    def modifier_civilite(self,civilite):
+        self._civilite = civilite
+    
+    def modifier_date_de_naissance(self,date):
+        self._date_de_naissance = date
+    
+    def modifier_email(self,mail):
+        self.email = mail
+    
+    def default(self):
+        print("Erreur : Aucun changement effectué")
+    
+    def modifier_profil(self):
+        choix  = 0 
+        while choix > 6 or choix < 1 :
+            choix = int(input(' 1. Modifier le mot de passe \n'
+            '2. Modifier le nom \n'
+            '3. Modifier le prenom \n'
+            '4. Modifier la civilité \n'
+            '5. Modifier la date de naissance \n'
+            '6. Modifier l\'adresse mail \n'
+            'Taper le numéro correspondant :'))
+            actions = {1: self.modifier_mdp,2:self.modifier_nom,3:self.modifier_prenom,4:self.modifier_civilite,
+            5:self.modifier_date_de_naissance,6:self.modifier_email}
+            action = actions.get(choix, self.default)
+            action(input("entrer la nouvelle valeur :"))
+        
 
     def type_abonnement(self):
         self._date_de_naissance = dt.datetime.strptime(self._date_de_naissance,'%d-%m-%Y').date()
