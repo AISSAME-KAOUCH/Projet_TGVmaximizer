@@ -1,7 +1,7 @@
 from DAO.db_connection import DBConnection
 from business_object.profil import Profil
 import requests
-from singleton import Singleton
+from utils.singleton import Singleton
 
 class ProfilDAO(metaclass=Singleton):
     
@@ -59,8 +59,4 @@ class ProfilDAO(metaclass=Singleton):
                         , "mdp": profil._mot_de_passe
                         , "civilite" : profil._civilite
                         , "birthday" : profil._date_de_naissance})
-                res = cursor.fetchone()
-
-profil = Profil('ilyass', 'el fikri', '13/12/2001','mr', 'mail', 'pass')
-profildao = ProfilDAO()
-profildao.create_profil(profil)
+                res = cursor.all()
