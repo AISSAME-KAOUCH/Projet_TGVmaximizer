@@ -7,15 +7,15 @@ class Recherche_weekend(Recherche):
         self.profil = profil
         self.trajet = trajet
 
-    def recherche(self, trajet):
-        return rechercheDAO.find_by_id(trajet)
+    def recherche(self):
+        return rechercheDAO.find_by_id(self.trajet)
     
-    def sauvegarder(self, trajet, profil):
-        rechercheDAO.sauvegarder(trajet, profil)
+    def sauvegarder(self):
+        rechercheDAO.sauvegarder(self.trajet, self.profil)
     
-    def creer_alerte(self, trajet, profil, choix):
+    def creer_alerte(self, choix):
         if choix == "oui":
-            rechercheDAO.creer_alerte(trajet, profil)
+            rechercheDAO.creer_alerte(self.trajet, self.profil)
     
         
 
