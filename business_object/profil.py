@@ -81,6 +81,7 @@ class Profil :
             res = 'pas éligible'
         return res 
 
+
     def __str__(self): 
         return 'Profil de {}. {} {} :\n Email: {} \n Date de naissance : {} '.format(self._civilite,self._nom, self._prenom,self.email,self._date_de_naissance)  
 

@@ -15,7 +15,7 @@ class   ConnexionView(AbstractView):
                 'message': 'Quel est votre identifiant ? (email)'
             },{
                 'type': 'input',
-                'name': 'email',
+                'name': 'mdp',
                 'message': 'Quel est votre mot de passe ? '
             }
         ]
@@ -26,6 +26,15 @@ class   ConnexionView(AbstractView):
     def make_choice(self):
         
         answers = prompt(self.__questions)
-    
-        from view.start_view import StartView
-        return StartView()
+
+        from DAO.profilDAO import ProfilDAO
+        profil = ProfilDAO().find_by_id(answers['email'])
+        if profil:
+            if profil._mot_de_passe == answers['mdp']:
+                Session().profil = profil
+                from view.menu_view import MenuView
+                return MenuView()
+        else:
+            print('Identifiant / mot de passe non reconnu.')
+            from view.start_view import StartView
+            return StartView()
