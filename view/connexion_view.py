@@ -15,7 +15,7 @@ class   ConnexionView(AbstractView):
                 'message': 'Quel est votre identifiant ? (email)'
             },{
                 'type': 'input',
-                'name': 'email',
+                'name': 'mdp',
                 'message': 'Quel est votre mot de passe ? '
             }
         ]
@@ -26,6 +26,16 @@ class   ConnexionView(AbstractView):
     def make_choice(self):
         
         answers = prompt(self.__questions)
-    
-        from view.start_view import StartView
-        return StartView()
+
+
+        from business_object.profil import Profil
+        profil = Profil.charger(answers['email'], answers['mdp'])
+
+        if profil:
+            Session().profil = profil
+            from view.menu_view import MenuView
+            return MenuView()
+        else:
+            print('Identifiant / mot de passe non reconnu.')
+            from view.start_view import StartView
+            return StartView()
