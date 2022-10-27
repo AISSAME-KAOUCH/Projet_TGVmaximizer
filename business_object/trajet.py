@@ -2,11 +2,19 @@ from information import Information
 
 class Trajet : 
 
-    def __init__(self, depart:Information, arrivee:Information):
-        self.depart = depart 
-        self.arrivee = arrivee
+    def __init__(self, id, ville_depart, date_depart, heure_depart,
+                ville_arrivee, date_arrivee, heure_arrivee, numero_train):
+        self.id = id
+        self.ville_depart = ville_depart 
+        self.date_depart = date_depart
+        self.heure_depart = heure_depart
+        self.ville_arrivee = ville_arrivee
+        self.date_arrivee = date_arrivee
+        self.heure_arrivee = heure_arrivee
+        self.numero_train = numero_train
+
     
     def __str__(self):
-        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} le {} à {}.'.format(self.depart.ville,self.depart.date,self.depart.heure,self.arrivee.ville,self.arrivee.date,self.arrivee.heure)
+        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} le {} à {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.date_arrivee,self.heure_arrivee)
 
 
