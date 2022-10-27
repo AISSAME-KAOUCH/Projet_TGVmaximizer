@@ -1,6 +1,7 @@
 from DAO.db_connection import DBConnection
 from business_object.profil import Profil
 import requests
+from utils.singleton import Singleton
 
 class ProfilDAO(metaclass=Singleton):
 
@@ -39,7 +40,7 @@ class ProfilDAO(metaclass=Singleton):
                         mot_de_passe = res['mot_de_passe'])
         return profil
 
-    def modifier_mot_de_passe(profil_modifie):
+    def modifier_mot_de_passe(self,profil_modifie : Profil):
 
         """Fonction pour modifier le mot de passe dans la DB
         
@@ -57,10 +58,10 @@ class ProfilDAO(metaclass=Singleton):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute( 
-                    request, {"email" : email, "mdp" : profil_modifie._mot_de_passe}
+                    request, {"email" : profil_modifie.email, "mdp" : profil_modifie._mot_de_passe}
                 )
 
-    def modifier_profil(profil_modifie):
+    def modifier_profil(self,profil_modifie):
 
         """Fonction pour modifier le profil dans la DB
         
@@ -79,6 +80,15 @@ class ProfilDAO(metaclass=Singleton):
                     request, {"email" : profil_modifie.email, "nom" : profil_modifie.nom, "prenom" : profil_modifie.prenom, "civilite": profil_modifie.civilite, "date_de_naissance": profil_modifie.date_de_naissance}
                 )
     
-    def create_profil(profil):
-        pass
-    
+    def create_profil(self,profil : Profil):
+        with DBConnection().connection as connection :
+            with connection.cursor() as cursor :
+                cursor.execute('INSERT INTO profil (email,nom,prenom,mot_de_passe,civilite,date_de_naissance) '\
+                    'VALUES (%(email)s, %(nom)s,%(prenom)s,%(mot_de_passe)s,%(civilite)s,%(date_de_naissance)s)'\
+                        ,{"email": profil.email
+                        , "nom" : profil._nom
+                        , "prenom" : profil._prenom
+                        , "mot_de_passe": profil._mot_de_passe
+                        , "civilite" : profil._civilite
+                        , "date_de_naissance" : profil._date_de_naissance})
+                #res = cursor.fetchall()

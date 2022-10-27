@@ -1,3 +1,8 @@
 # Listes des modules Pyton nécéssaire à l'exécution du code
-
-# datetime
+requests
+psycopg2_binary
+dataclasses
+python-dotenv
+fastapi
+PyInquirer
+datetime
