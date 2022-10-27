@@ -23,6 +23,8 @@ class ProfilDAO(metaclass=Singleton):
 
         """
 
+        profil = None
+
         request = "SELECT * FROM profil " \
                   "WHERE email = %(email)s"
 
@@ -32,12 +34,13 @@ class ProfilDAO(metaclass=Singleton):
                     request, {"email" : email}
                 )
                 res = cursor.fetchone()
-        profil = Profil(nom = res['nom'], 
-                        prenom = res['prenom'], 
-                        date_de_naissance = res['date_de_naissance'],
-                        civilite = res['civilite'],
-                        email = res['email'], 
-                        mot_de_passe = res['mot_de_passe'])
+        if res:        
+            profil = Profil(nom = res['nom'], 
+                            prenom = res['prenom'], 
+                            date_de_naissance = res['date_de_naissance'],
+                            civilite = res['civilite'],
+                            email = res['email'], 
+                            mot_de_passe = res['mot_de_passe'])
         return profil
 
     def modifier_mot_de_passe(self,profil_modifie : Profil):
