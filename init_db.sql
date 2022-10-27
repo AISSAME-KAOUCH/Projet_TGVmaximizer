@@ -32,7 +32,7 @@ INSERT INTO trajet(date, heure_depart, ville_depart, ville_arrivee, numero_train
 
 
 INSERT INTO profil(email, nom, prenom, mot_de_passe, civilite, date_de_naissance) VALUES
-('jules@gmail.com', 'Jules', 'Lejas', 'bgdu33', 'F','02/03/2001');
+('jules@gmail.com', 'Jules', 'Lejas', 'bgdu33', 'H','02/03/2001');
 
 INSERT INTO recherche(email, id) VALUES 
 ('jules@gmail.com',1);
