@@ -1,6 +1,7 @@
 from recherche import Recherche
 from  DAO import rechercheDAO 
-class Recherche_weekend(Recherche):
+
+class Recherche_aller(Recherche):
 
     def __init__(self, profil: Profil, trajet: Trajet) -> None:
         super().__init__()
@@ -12,10 +13,13 @@ class Recherche_weekend(Recherche):
     
     def sauvegarder(self):
         rechercheDAO.sauvegarder(self.trajet, self.profil)
-    
+
     def creer_alerte(self, choix):
         if choix == "oui":
             rechercheDAO.creer_alerte(self.trajet, self.profil)
+
+    
+    
     
         
 
