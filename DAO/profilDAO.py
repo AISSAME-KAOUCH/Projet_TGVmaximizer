@@ -7,7 +7,7 @@ class ProfilDAO(metaclass=Singleton):
     
     def find_by_id(self, email : str) -> Profil:
 
-        request = "SELECT * FROM profil" \
+        request = "SELECT * FROM profil " \
                   "WHERE email = %(email)s"
 
         with DBConnection().connection as connection:
@@ -15,7 +15,7 @@ class ProfilDAO(metaclass=Singleton):
                 cursor.execute( 
                     request, {"email" : email}
                 )
-                res = cursor.fetchall()
+                res = cursor.fetchone()
         profil = Profil(nom = res['nom'], 
                         prenom = res['prenom'], 
                         date_de_naissance = res['date_de_naissance'],

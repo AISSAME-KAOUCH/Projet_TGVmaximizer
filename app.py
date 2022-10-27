@@ -4,9 +4,9 @@ from DAO.profilDAO import ProfilDAO
 
 app = FastAPI()
 
-@app.get("/profil")
-async def get_profil():
-    return ProfilDAO().find_by_id(1)
+@app.get("/profil/{email}")
+async def get_profil(email):
+    return ProfilDAO().find_by_id(email)
 
 
 if __name__ == "__main__":
