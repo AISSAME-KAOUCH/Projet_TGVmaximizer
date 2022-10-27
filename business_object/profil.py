@@ -81,15 +81,6 @@ class Profil :
             res = 'pas éligible'
         return res 
 
-    #temporaire    
-    @staticmethod
-    def charger(email, mdp):
-        from DAO.profilDAO import ProfilDAO
-        profil = ProfilDAO().find_by_id(email)
-        if profil:
-            if profil._mot_de_passe == mdp:
-                return profil
-        return None
 
     def __str__(self): 
         return 'Profil de {}. {} {} :\n Email: {} \n Date de naissance : {} '.format(self._civilite,self._nom, self._prenom,self.email,self._date_de_naissance)  

@@ -27,14 +27,13 @@ class   ConnexionView(AbstractView):
         
         answers = prompt(self.__questions)
 
-
-        from business_object.profil import Profil
-        profil = Profil.charger(answers['email'], answers['mdp'])
-
+        from DAO.profilDAO import ProfilDAO
+        profil = ProfilDAO().find_by_id(answers['email'])
         if profil:
-            Session().profil = profil
-            from view.menu_view import MenuView
-            return MenuView()
+            if profil._mot_de_passe == answers['mdp']:
+                Session().profil = profil
+                from view.menu_view import MenuView
+                return MenuView()
         else:
             print('Identifiant / mot de passe non reconnu.')
             from view.start_view import StartView
