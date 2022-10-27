@@ -36,7 +36,7 @@ class ProfilDAO(metaclass=Singleton):
                     request, {"email" : profil_modifie.email, "mdp" : profil_modifie._mot_de_passe}
                 )
 
-    def modifier_profil(profil_modifie):
+    def modifier_profil(self,profil_modifie):
 
         request = "UPDATE profil SET" \
                   "nom = %(nom)s ,prenom = %(prenom)s, civilite = %(civilite)s, date_de_naissance = %(date_de_naissance)s, email = %(email)s" \

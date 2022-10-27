@@ -1,7 +1,7 @@
 from DAO.db_connection import DBConnection
 from business_object.profil import Profil
 import requests
-#from utils import Singleton
+import utils
 from DAO.profilDAO import ProfilDAO
 
 
