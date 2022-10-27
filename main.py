@@ -9,3 +9,4 @@ if __name__ == '__main__':
         print('-----------------')
         current_view.display_info()
         current_view = current_view.make_choice()
+

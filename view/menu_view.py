@@ -15,8 +15,8 @@ class MenuView(AbstractView):
                 'name': 'choice',
                 'message': '',
                 'choices': [
-                    'faire ci'
-                    , 'faire la'
+                    'Filtre de recherche'
+                    , 'Modifier son profil'
                     , 'Quitter'
                 ]
             }
@@ -30,12 +30,12 @@ class MenuView(AbstractView):
         
         reponse = prompt(self.__questions)
         
-        if reponse['choice'] == 'faire ci':
-            return self
-        elif reponse['choice'] == 'faire la':
-            return self
+        if reponse['choice'] == 'Filtre de recherche':
+            from view.filtre_view import FiltreView
+            return FiltreView()
+        if reponse['choice'] == 'Modifier son profil':
+            from view.modifier_profil_vue import ModifierView
+            return ModifierView()
         elif reponse['choice'] == 'Quitter':
             return None
 
-        
-        

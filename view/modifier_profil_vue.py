@@ -6,7 +6,7 @@ from view.session import Session
 
 
 
-class MenuView(AbstractView):
+class ModifierView(AbstractView):
 
     def __init__(self):
         self.__questions = [
@@ -21,16 +21,8 @@ class MenuView(AbstractView):
                     , 'modifier nom'
                     , 'retour menu'
                 ]
-            },{
-                    'type': 'input',
-                    'name': 'input',
-                    'message': 'Saisir :',
-                }
-        ]
+            }]
 
-
-
-    
 
     def display_info(self):
         print(f'Veuillez choisir une action {Session().profil._prenom}.')
@@ -40,21 +32,32 @@ class MenuView(AbstractView):
         
         reponse = prompt(self.__questions)
         
-        if reponse['choice'] == 'modifier mot de passe':
+
+        if reponse['choice'] == 'retour menu':
+            from view.menu_view import MenuView
+            return MenuView()
+        
+        modifier = [{
+                'type': 'input',
+                'name': 'input',
+                'message': 'Saisir'
+            }]
+        res = prompt(modifier)
+        
+        if reponse['choice'] == 'modifier mot de passe': 
+            #action a faire         
             from view.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier addresse mail':
+            #action a faire 
             from view.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier prenom':
+            #action a faire 
             from view.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier nom':
+            #action a faire 
             from view.menu_view import MenuView
             return MenuView()
-        elif reponse['choice'] == 'retour menu':
-            from view.menu_view import MenuView
-            return MenuView()
-
-        
         
