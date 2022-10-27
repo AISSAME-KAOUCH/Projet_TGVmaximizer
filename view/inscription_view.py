@@ -3,6 +3,8 @@ from pprint import pprint
 from PyInquirer import  prompt
 from view.abstract_view import AbstractView
 from view.session import Session
+from business_object.profil import Profil
+
 
 class InscriptionView(AbstractView):
     def __init__(self) -> None:
@@ -38,16 +40,27 @@ class InscriptionView(AbstractView):
                 'message': 'Quel est votre sexe? Saisir au format H ou M',
             }
 
-            
         ]
 
     def display_info(self):
         print("Veuillez remplir le formulaire.")
 
     def make_choice(self):
+
         answers = prompt(self.__questions)
-        from view.start_view import StartView
-        return StartView()
+
+
+        from DAO.profilDAO import ProfilDAO
+        profil = ProfilDAO().find_by_id(answers['email'])
+        if profil:
+            print('L\'addresse mail est deja prise')
+            from view.start_view import StartView
+            return StartView()
+        else:
+            Session().profil = Profil(answers['nom'], answers['prenom'], answers['date_naissance'], answers['civilite'], answers['email'] , answers['mdp'])
+            ProfilDAO().create_profil(Session().profil)
+            from view.menu_view import MenuView
+            return MenuView()
         
         
         
