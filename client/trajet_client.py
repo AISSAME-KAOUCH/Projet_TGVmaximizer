@@ -1,5 +1,6 @@
 import os
 import requests
+from business_object.trajet import Trajet
 
 
 HOST_WEBSERVICE="https://data.sncf.com"
@@ -12,10 +13,17 @@ class Trajetclient :
         req = requests.get(f"{HOST_WEBSERVICE}{END_POINT}&refine.date={annee}%2F{mois}%2F{jour}&refine.origine={ville_d}&refine.destination={ville_arrivee}")
         dic=req.json()
         resultat=dic['records']
+        trajets=[]
         for i in resultat :
-            print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
-
+            #print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
+            j=1
+            tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['date'],i['fields']['heure_arrivee'],i['fields']['train_no'])
+            trajets.append(tj)  
+            j+=1
+        return trajets
 if __name__=='__main__' :
     trajet=Trajetclient()
-    trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")
+    resultat=trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")
+    for tj in resultat :
+        print(tj.__str__())
 

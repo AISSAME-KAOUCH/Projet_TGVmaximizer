@@ -1,4 +1,3 @@
-from information import Information
 
 class Trajet : 
 
