@@ -50,8 +50,7 @@ class TrajetDAO(metaclass=Singleton):
                             id=t['id'],
                             date_depart = t['date_depart'], 
                             heure_depart = t['heure_depart'],
-                            ville_arrivee = t['ville_arrivee'],
-                            date_arrivee = t['date_arrivee'], 
+                            ville_arrivee = t['ville_arrivee'], 
                             heure_arrivee = t['heure_arrivee'],
                             numero_train=t['numero_train']
                             )
@@ -83,7 +82,6 @@ class TrajetDAO(metaclass=Singleton):
                             , "date_depart" : trajets[i].date_depart
                             , "heure_depart": trajets[i].heure_depart
                             , "ville_arrivee" : trajets[i].ville_arrivee
-                            , "date_arrivee" : trajets[i].date_arrivee
                             , "heure_arrivee" : trajets[i].heure_arrivee
                             , "numero_train" : trajets[i].numero_train
                             })

@@ -3,7 +3,7 @@ class Trajet :
     "Trajet contenant les informations du voyage en train."
 
     def __init__(self, id, ville_depart, date_depart, heure_depart,
-                ville_arrivee, date_arrivee, heure_arrivee, numero_train):
+                ville_arrivee, heure_arrivee, numero_train):
 
         """ Constructeur permettant l'instanciation d'un objet Trajet.
 
@@ -19,8 +19,6 @@ class Trajet :
             heure à laquelle part le train correspondant au trajet
         ville_arrivee : str
             ville dans laquelle arrive le train correspondant au trajet
-        date_arrivee : str
-            date à laquelle arrive le train correspondant au trajet
         heure_arrivee : str
             heure à laquelle arrive le train correspondant au trajet
         numero_train : str
@@ -32,7 +30,6 @@ class Trajet :
         self.date_depart = date_depart
         self.heure_depart = heure_depart
         self.ville_arrivee = ville_arrivee
-        self.date_arrivee = date_arrivee
         self.heure_arrivee = heure_arrivee
         self.numero_train = numero_train
 
@@ -47,6 +44,6 @@ class Trajet :
         -------
         str : les informations du trajet
         """
-        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} le {} à {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.date_arrivee,self.heure_arrivee)
+        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} à {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.heure_arrivee)
 
 
