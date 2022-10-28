@@ -1,14 +1,11 @@
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-DROP TABLE IF EXISTS profil CASCADE;
+
 CREATE TABLE profil ( email TEXT PRIMARY KEY, 
     nom TEXT, 
     prenom TEXT, 
     mot_de_passe TEXT, 
     civilite TEXT, 
     date_de_naissance DATE) ;
-DROP TABLE IF EXISTS trajet CASCADE;
-CREATE SEQUENCE seq_id_trajet;
+
 CREATE TABLE trajet (id INT PRIMARY KEY , 
     date DATE, 
     heure_depart TIME, 
@@ -17,7 +14,8 @@ CREATE TABLE trajet (id INT PRIMARY KEY ,
     numero_train INT, 
     heure_arrivee TIME, 
     disponibilite_max TEXT);
-DROP TABLE IF EXISTS recherche CASCADE;
+
+
 CREATE TABLE recherche (
 id INT REFERENCES trajet(id),
 email TEXT REFERENCES profil(email),
