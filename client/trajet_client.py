@@ -14,9 +14,9 @@ class Trajetclient :
         dic=req.json()
         resultat=dic['records']
         trajets=[]
+        j=1
         for i in resultat :
             #print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
-            j=1
             tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['heure_arrivee'],i['fields']['train_no'],i['fields']['od_happy_card'])
             trajets.append(tj)  
             j+=1
