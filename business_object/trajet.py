@@ -3,7 +3,7 @@ from information import Information
 class Trajet : 
 
     def __init__(self, id, ville_depart, date_depart, heure_depart,
-                ville_arrivee, date_arrivee, heure_arrivee, numero_train):
+                ville_arrivee = None, date_arrivee = None, heure_arrivee = None, numero_train = None):
         self.id = id
         self.ville_depart = ville_depart 
         self.date_depart = date_depart
