@@ -8,7 +8,19 @@ class DBConnection(metaclass=Singleton):
     """
     Classe technique qui permet de générer une connection à la DB.
     """
+
     def __init__(self):
+
+        """ Constructeur qui permet la création d'une connection.
+
+        Parameters
+        ----------
+
+        Returns 
+        -------
+
+        """
+    
         dotenv.load_dotenv(override=True) 
         self.__connection =psycopg2.connect(
             host=os.environ["HOST"],
@@ -21,8 +33,12 @@ class DBConnection(metaclass=Singleton):
     @property
     def connection(self):
         """
-        return the opened connection.
+        Parameters
+        ----------
 
-        :return: the opened connection.
+        Returns 
+        -------
+        The opened connection 
         """
+
         return self.__connection
