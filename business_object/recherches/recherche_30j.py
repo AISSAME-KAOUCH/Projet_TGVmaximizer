@@ -1,6 +1,6 @@
-from recherche import Recherche
+from abstract_recherche import AbstractRecherche
 from  DAO import rechercheDAO 
-class Recherche_30j(Recherche):
+class Recherche_30j(AbstractRecherche):
 
     def __init__(self, profil: Profil, trajet: Trajet) -> None:
         super().__init__()
