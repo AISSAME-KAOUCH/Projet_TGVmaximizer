@@ -5,7 +5,33 @@ from utils.singleton import Singleton
 
 class TrajetDAO(metaclass=Singleton):
     
+    """Classe permettant la communication avec notre base de données en ce qui concerne les trajets.
+    Elle permet de récupérer des trajets depuis notre base de données mais aussi d'en ajouter. 
+    """
+
     def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee ) -> Trajet:
+
+        """Fonction permettant de récupérer, dans la base de données, les trajets
+        correspondant aux informations données, et de stocker les informations de ces trajets
+        dans des objets Trajets.
+
+        Parameters
+        ----------
+        date_depart : str
+            Date de départ du trajet souhaité
+        heure_depart : str
+            Heure de départ du trajet souhaité
+        ville_depart : str
+            Ville de départ du trajet souhaité
+        ville_arrivee : str
+            Ville d'arrivée du trajet souhaité
+        
+        ----------
+        Returns
+        ----------
+        list[Trajet] : liste des objets Trajets qui contiennent les informations des trajets 
+        correspondants aux critères en paramètres. 
+        """
 
         request = "SELECT * FROM profil" \
                   "WHERE date_depart = %(date_depart)s and heure_depart = %(heure_depart)s and "\
@@ -34,6 +60,19 @@ class TrajetDAO(metaclass=Singleton):
 
     def insert_trajets(self,trajets : list[Trajet]):
         
+        """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir
+        d'objets métiers Trajet.
+        
+        Parameters
+        ----------
+        trajets : list[Trajet]
+            Liste des trajets que l'on souhaite insérer dans la base de données.
+            
+        Returns
+        -------
+        None
+        """
+
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 for i in range(len(trajets)):
