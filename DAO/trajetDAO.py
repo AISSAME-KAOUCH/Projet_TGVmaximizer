@@ -33,9 +33,9 @@ class TrajetDAO(metaclass=Singleton):
         correspondants aux critères en paramètres. 
         """
 
-        request = "SELECT * FROM profil" \
+        request = "SELECT * FROM profil " \
                   "WHERE date_depart = %(date_depart)s and heure_depart = %(heure_depart)s and "\
-                  "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
+                  "ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:

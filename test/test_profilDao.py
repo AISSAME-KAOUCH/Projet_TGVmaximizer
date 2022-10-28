@@ -8,7 +8,7 @@ class TestProfilDAO(TestCase):
     def test_create_profil(self):
         profil_dao = ProfilDAO()
         profil = Profil("Dupont", "Jean", "02-03-2000", "M", "jean.dupont@gmail.com", "super_mdp")
-        updated = profil_dao.create_profil(profil)
+        created = profil_dao.create_profil(profil)
 
     def test_find_by_id(self):
         profil_vide = ProfilDAO()
