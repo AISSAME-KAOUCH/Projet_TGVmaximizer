@@ -33,8 +33,8 @@ class RechercheDAO(metaclass=Singleton):
             with connection.cursor() as cursor :
                 cursor.execute("SELECT * FROM recherche JOIN trajet ON trajet.id = recherche.id "\
                     "WHERE recherche.id = %(id)s"
-                    , {"id": trajet.id}
-                res = cursor.fetchall()
+                    , {"id": trajet.id})
+        return cursor.fetchall()
 
     
     def update(recherche: Recherche):
