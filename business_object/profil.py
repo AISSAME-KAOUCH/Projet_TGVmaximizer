@@ -31,10 +31,8 @@ class Profil :
         self.email = email
         self._mot_de_passe = mot_de_passe
 
-    def modifier_mdp(self):
-        new_pass = input('Entrer nouveau mot de passe : ')
+    def modifier_mdp(self, new_pass):
         self._mot_de_passe = new_pass
-        print('Mot de passe modifié avec succès.')
     
     def modifier_nom(self,nom):
         self._nom = nom
@@ -51,9 +49,6 @@ class Profil :
     def modifier_email(self,mail):
         self.email = mail
     
-    def default(self):
-        print("Erreur : Aucun changement effectué")
-    
     def modifier_profil(self):
         choix  = 0 
         while choix > 6 or choix < 1 :
@@ -66,7 +61,7 @@ class Profil :
             'Taper le numéro correspondant :'))
             actions = {1: self.modifier_mdp,2:self.modifier_nom,3:self.modifier_prenom,4:self.modifier_civilite,
             5:self.modifier_date_de_naissance,6:self.modifier_email}
-            action = actions.get(choix, self.default)
+            action = actions.get(choix)
             action(input("entrer la nouvelle valeur :"))
         
 
@@ -80,7 +75,6 @@ class Profil :
         else : 
             res = 'pas éligible'
         return res 
-
 
     def __str__(self): 
         return 'Profil de {}. {} {} :\n Email: {} \n Date de naissance : {} '.format(self._civilite,self._nom, self._prenom,self.email,self._date_de_naissance)  
