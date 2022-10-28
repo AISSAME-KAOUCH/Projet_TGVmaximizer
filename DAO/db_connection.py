@@ -11,8 +11,8 @@ class DBConnection(metaclass=Singleton):
 
     def __init__(self):
 
-    """ Constructeur qui permet la création d'une connection.
-    """
+        """ Constructeur qui permet la création d'une connection.
+        """
     
         dotenv.load_dotenv(override=True) 
         self.__connection =psycopg2.connect(
