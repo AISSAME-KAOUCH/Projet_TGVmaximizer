@@ -5,7 +5,7 @@ class Trajet :
     "Trajet contenant les informations du voyage en train."
 
     def __init__(self, id, ville_depart, date_depart, heure_depart,
-                ville_arrivee, heure_arrivee, numero_train):
+                ville_arrivee, heure_arrivee, numero_train,disponibilite_max):
 
         """ Constructeur permettant l'instanciation d'un objet Trajet.
 
@@ -34,6 +34,7 @@ class Trajet :
         self.ville_arrivee = ville_arrivee
         self.heure_arrivee = heure_arrivee
         self.numero_train = numero_train
+        self.disponibilite_max=disponibilite_max
 
     
     def __str__(self):
@@ -46,6 +47,6 @@ class Trajet :
         -------
         str : les informations du trajet
         """
-        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} à {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.heure_arrivee)
+        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} à {} sa disponibilité est {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.heure_arrivee,self.disponibilite_max)
 
 
