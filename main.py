@@ -1,6 +1,7 @@
 #from view.start_view import StartView
 from client.trajet_client import Trajetclient
 from business_object.trajet import Trajet
+from DAO.trajetDAO import TrajetDAO
 """
 if __name__ == '__main__':
     # run the StartView
@@ -18,3 +19,6 @@ if __name__=='__main__' :
     resultat=trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")
     for tj in resultat :
         print(tj.__str__())
+
+    test=TrajetDAO()
+    test.insert_trajets(resultat)
