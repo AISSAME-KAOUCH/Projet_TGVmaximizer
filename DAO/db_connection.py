@@ -12,6 +12,13 @@ class DBConnection(metaclass=Singleton):
     def __init__(self):
 
         """ Constructeur qui permet la création d'une connection.
+
+        Parameters
+        ----------
+
+        Returns 
+        -------
+
         """
     
         dotenv.load_dotenv(override=True) 

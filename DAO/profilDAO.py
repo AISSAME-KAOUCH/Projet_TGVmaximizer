@@ -62,9 +62,9 @@ class ProfilDAO(metaclass=Singleton):
         """
 
         updated = False
-        request = "UPDATE profil" \
-                  "SET mot_de_passe = '%(mdp)s'" \
-                  "WHERE email = '%(email)s'"
+        request = "UPDATE profil " \
+                  "SET mot_de_passe = %(mdp)s" \
+                  "WHERE email = %(email)s"
 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -91,13 +91,13 @@ class ProfilDAO(metaclass=Singleton):
         """
 
         updated = False
-        request = "UPDATE profil SET" \
+        request = "UPDATE profil SET " \
                   "nom = %(nom)s ,prenom = %(prenom)s, civilite = %(civilite)s, date_de_naissance = %(date_de_naissance)s, email = %(email)s" \
-                  "WHERE email = '%(email)s'"
+                  "WHERE email = %(email)s"
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute( 
-                    request, {"email" : profil_modifie.email, "nom" : profil_modifie.nom, "prenom" : profil_modifie.prenom, "civilite": profil_modifie.civilite, "date_de_naissance": profil_modifie.date_de_naissance}
+                    request, {"email" : profil_modifie.email, "nom" : profil_modifie._nom, "prenom" : profil_modifie._prenom, "civilite": profil_modifie._civilite, "date_de_naissance": profil_modifie._date_de_naissance}
                 )
                 if cursor.rowcount :
                     updated = True
