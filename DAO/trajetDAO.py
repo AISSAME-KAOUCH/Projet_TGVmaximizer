@@ -77,8 +77,8 @@ class TrajetDAO(metaclass=Singleton):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 for i in range(len(trajets)):
-                    cursor.execute('INSERT INTO trajet (id,ville_depart,date,heure_depart,ville_arrivee,heure_arrivee,numero_train) '\
-                        'VALUES (%(id)s, %(ville_depart)s,%(date_depart)s,%(heure_depart)s,%(ville_arrivee)s,%(heure_arrivee)s,%(numero_train)s)'\
+                    cursor.execute('INSERT INTO trajet (id,ville_depart,date,heure_depart,ville_arrivee,heure_arrivee,numero_train,disponibilite_max) '\
+                        'VALUES (%(id)s, %(ville_depart)s,%(date_depart)s,%(heure_depart)s,%(ville_arrivee)s,%(heure_arrivee)s,%(numero_train)s,%(disponibilite_max)s)'\
                             ,{"id": trajets[i].id
                             , "ville_depart" : trajets[i].ville_depart
                             , "date_depart" : trajets[i].date_depart
@@ -86,4 +86,5 @@ class TrajetDAO(metaclass=Singleton):
                             , "ville_arrivee" : trajets[i].ville_arrivee
                             , "heure_arrivee" : trajets[i].heure_arrivee
                             , "numero_train" : trajets[i].numero_train
+                            , "disponibilite_max" : trajets[i].disponibilite_max
                             })
