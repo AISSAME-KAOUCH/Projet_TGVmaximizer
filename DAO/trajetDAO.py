@@ -33,8 +33,8 @@ class TrajetDAO(metaclass=Singleton):
         correspondants aux critères en paramètres. 
         """
 
-        request = "SELECT * FROM profil" \
-                  "WHERE date_depart = %(date_depart)s and heure_depart = %(heure_depart)s and "\
+        request = "SELECT * FROM trajet " \
+                  "WHERE date_depart = %(date_depart)s and heure_depart = %(heure_depart)s "\
                   "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
 
         with DBConnection().connection as connection:
@@ -75,8 +75,8 @@ class TrajetDAO(metaclass=Singleton):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 for i in range(len(trajets)):
-                    cursor.execute('INSERT INTO trajet (id,ville_depart,date_depart,heure_depart,ville_arrivee,date_arrivee,heure_arrivee,numero_train) '\
-                        'VALUES (%(id)s, %(ville_depart)s,%(date_depart)s,%(heure_depart)s,%(ville_arrivee)s,%(date_arrivee)s,%(heure_arrivee)s,%(numero_train)s)'\
+                    cursor.execute('INSERT INTO trajet (id,ville_depart,date_depart,heure_depart,ville_arrivee,heure_arrivee,numero_train) '\
+                        'VALUES (%(id)s, %(ville_depart)s,%(date_depart)s,%(heure_depart)s,%(ville_arrivee)s,%(heure_arrivee)s,%(numero_train)s)'\
                             ,{"id": trajets[i].id
                             , "ville_depart" : trajets[i].ville_depart
                             , "date_depart" : trajets[i].date_depart
