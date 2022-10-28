@@ -1,6 +1,6 @@
-from recherche import Recherche
+from abstract_recherche import AbstractRecherche
 from  DAO import rechercheDAO 
-class Recherche_aller_retour(Recherche):
+class Recherche_aller_retour(AbstractRecherche):
 
     def __init__(self, profil: Profil, trajet: Trajet) -> None:
         super().__init__()
@@ -9,6 +9,7 @@ class Recherche_aller_retour(Recherche):
 
     def recherche(self):
         return rechercheDAO.find_by_id(self.trajet)
+        #recherche un trajet aller et un autre retour
     
     def sauvegarder(self):
         rechercheDAO.sauvegarder(self.trajet, self.profil)
