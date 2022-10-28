@@ -1,5 +1,5 @@
 from abc import ABC
-class Recherche(ABC):
+class AbstractRecherche(ABC):
     
     def __init__(self) -> None:
         super().__init__()
