@@ -16,9 +16,24 @@ if __name__ == '__main__':
 
 if __name__=='__main__' :
     trajet=Trajetclient()
-    resultat=trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")
-    for tj in resultat :
-        print(tj.__str__())
-
     test=TrajetDAO()
+    id_ini=test.find_max_id()
+    print(id_ini[0]['maximum'])
+    
+    resultat=trajet.get_trajets('2022','11','08',"NANTES","LE+MANS",id_ini[0]['maximum'])
+    #for tj in resultat :
+    #    print(tj.__str__())
+
+    
     test.insert_trajets(resultat)
+    res=test.find_by_depart('2022-11-08','11:05','NANTES','LE MANS')
+    #print(res)
+
+   
+    for t in res :
+        print(t.__str__())      
+    #for i in res :
+    #    print(i.__str__())
+    
+
+    
