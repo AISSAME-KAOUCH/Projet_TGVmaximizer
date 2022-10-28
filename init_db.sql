@@ -9,7 +9,7 @@ CREATE TABLE profil ( email TEXT PRIMARY KEY,
     date_de_naissance DATE) ;
 DROP TABLE IF EXISTS trajet CASCADE;
 CREATE SEQUENCE seq_id_trajet;
-CREATE TABLE trajet (id INT PRIMARY KEY DEFAULT , 
+CREATE TABLE trajet (id INT PRIMARY KEY , 
     date DATE, 
     heure_depart TIME, 
     ville_depart TEXT, 

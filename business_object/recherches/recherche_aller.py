@@ -8,6 +8,10 @@ class Recherche_aller(AbstractRecherche):
         self.profil = profil
         self.trajet = trajet
 
+    def find_id_trajet(self,trajet):
+        
+
+
     def recherche(self):
         return rechercheDAO.find_by_id(self.trajet)
     
