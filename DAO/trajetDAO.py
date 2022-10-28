@@ -52,7 +52,9 @@ class TrajetDAO(metaclass=Singleton):
                             heure_depart = t['heure_depart'],
                             ville_arrivee = t['ville_arrivee'], 
                             heure_arrivee = t['heure_arrivee'],
-                            numero_train=t['numero_train']
+                            numero_train=t['numero_train'],
+                            disponibilite_max=t['disponibilite_max']
+
                             )
                 trajets=trajets.append(trajet)   
         return trajets

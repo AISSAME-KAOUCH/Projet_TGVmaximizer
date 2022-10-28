@@ -4,7 +4,7 @@ from business_object.trajet import Trajet
 
 
 HOST_WEBSERVICE="https://data.sncf.com"
-END_POINT="/api/records/1.0/search/?dataset=tgvmax&q=&sort=-date&facet=date&facet=origine&facet=destination&facet=od_happy_card"
+END_POINT="/api/records/1.0/search/?dataset=tgvmax&q=&rows=10000&facet=date&facet=origine&facet=destination&facet=od_happy_card"
 class Trajetclient :
     #def __init__(self) -> None:
     #    self.__HOST =os.environ["HOST_WEBSERVICE"]
@@ -17,7 +17,7 @@ class Trajetclient :
         for i in resultat :
             #print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
             j=1
-            tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['date'],i['fields']['heure_arrivee'],i['fields']['train_no'])
+            tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['heure_arrivee'],i['fields']['train_no'],i['fields']['od_happy_card'])
             trajets.append(tj)  
             j+=1
         return trajets
