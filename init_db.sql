@@ -16,7 +16,7 @@ CREATE TABLE trajet (id INT PRIMARY KEY ,
     ville_arrivee TEXT, 
     numero_train INT, 
     heure_arrivee TIME, 
-    disponibilite_max BOOL);
+    disponibilite_max TEXT);
 DROP TABLE IF EXISTS recherche CASCADE;
 CREATE TABLE recherche (
 id INT REFERENCES trajet(id),
