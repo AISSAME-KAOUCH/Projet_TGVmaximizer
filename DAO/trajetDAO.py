@@ -88,3 +88,9 @@ class TrajetDAO(metaclass=Singleton):
                             , "numero_train" : trajets[i].numero_train
                             , "disponibilite_max" : trajets[i].disponibilite_max
                             })
+    def find_id(self,trajet : Trajet):
+        with DBConnection().connection as connection :
+            with connection.cursor() as cursor :
+                cursor.execute('SELECT id FROM trajet WHERE id =  %(id)s'\
+                    ,{"id" : trajet.id})
+        return cursor.fetchone()
