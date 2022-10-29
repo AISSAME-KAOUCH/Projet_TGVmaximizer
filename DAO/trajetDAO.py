@@ -44,7 +44,7 @@ class TrajetDAO(metaclass=Singleton):
         """
 
         request = "SELECT * FROM trajet " \
-                  "WHERE date = %(date_depart)s and heure_depart = %(heure_depart)s "\
+                  "WHERE date = %(date_depart)s and heure_depart >= %(heure_depart)s "\
                   "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
 
         with DBConnection().connection as connection:
