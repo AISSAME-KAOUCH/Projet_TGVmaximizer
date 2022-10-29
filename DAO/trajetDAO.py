@@ -15,8 +15,8 @@ class TrajetDAO(metaclass=Singleton):
             with connection.cursor() as cursor:
                 cursor.execute( 
                     request )
-                resultat = cursor.fetchall()
-            return resultat
+                resultat = dict(cursor.fetchone())
+            return resultat['maximum']
 
 
     def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee : str ) -> Trajet:
@@ -58,16 +58,14 @@ class TrajetDAO(metaclass=Singleton):
         if res :
             
             for t in res :
-                trajet = Trajet(ville_depart = t['ville_depart'], 
-                            id=t['id'],
-                            date_depart= t['date'], 
-                            heure_depart = t['heure_depart'],
-                            ville_arrivee = t['ville_arrivee'], 
-                            heure_arrivee = t['heure_arrivee'],
-                            numero_train=t['numero_train'],
-                            disponibilite_max=t['disponibilite_max']
-
-                            )
+                trajet = Trajet(id=t['id'],
+                ville_depart = t['ville_depart'],
+                date_depart= t['date'], 
+                heure_depart = t['heure_depart'],
+                ville_arrivee = t['ville_arrivee'], 
+                heure_arrivee = t['heure_arrivee'],
+                numero_train=t['numero_train'],
+                disponibilite_max=t['disponibilite_max'])
                 tjs+=[trajet]
                 
         return tjs 

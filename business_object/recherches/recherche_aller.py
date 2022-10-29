@@ -21,14 +21,13 @@ class Recherche_aller(AbstractRecherche):
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
         trajetclient= Trajetclient()
         jour = trajet.date_depart[:2] # On tire les informations
-        mois = trajet.date_depart[4:6]# dont on a besoin 
-        annee = trajet.date_depart[8:12] # de l'attribut date_depart
+        mois = trajet.date_depart[3:5]# dont on a besoin 
+        annee = trajet.date_depart[6:10] # de l'attribut date_depart
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
         trajets = trajetclient.get_trajets(annee, mois, jour, trajet.ville_depart, trajet.ville_arrivee,id_initial)
         trajetdao.insert_trajets(trajets)
         resultat_req =trajetdao.find_by_depart(trajet.date_depart, trajet.heure_depart, trajet.ville_depart, trajet.ville_arrivee)
-        for trajet in resultat_req :
-            print(trajet)
+        return resultat_req
     
     def sauvegarder(self):
         return None
@@ -37,10 +36,6 @@ class Recherche_aller(AbstractRecherche):
         if choix == "oui":
             rechercheDAO.creer_alerte(self.trajet, self.profil)
 
-profil = Profil("Dupont", "Jean", "02-03-1980", "M", "jean.dupont@gmail.com", "first_mdp")
-
-trajet = Trajet('0','Paris', '10-01-2022', '07:00', 'Rennes', '', '0', 'oui')
-rech = Recherche_aller(profil, trajet)
     
         
 
