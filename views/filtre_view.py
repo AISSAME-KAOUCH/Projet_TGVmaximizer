@@ -42,9 +42,8 @@ class FiltreView(AbstractView):
         print("Veuillez remplir le formulaire.")
 
     def make_choice(self):
-        answers = prompt(self.__questions)
 
-
+        reponses = prompt(self.__questions)
 
         from view.menu_view import MenuView
         return MenuView()

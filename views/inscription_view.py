@@ -1,6 +1,6 @@
 from pprint import pprint
 
-from PyInquirer import  prompt
+from PyInquirer import prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 from business_object.profil import Profil
@@ -12,12 +12,12 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'prenom',
-                'message': 'Quel est votre prenom?',
+                'message': 'Quel est votre prenom ?',
             },
             {
                 'type': 'input',
                 'name': 'nom',
-                'message': 'Quel est votre nom?',
+                'message': 'Quel est votre nom ?',
             },
             {
                 'type': 'input',
@@ -27,7 +27,7 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'email',
-                'message': 'Quel est votre email?',
+                'message': 'Quel est votre email ?',
             },
             {
                 'type': 'input',
@@ -37,27 +37,27 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'civilite',
-                'message': 'Quel est votre sexe? Saisir au format H ou M',
+                'message': 'Quel est votre sexe ? Saisir au format H ou M',
             }
 
         ]
 
     def display_info(self):
-        print("Veuillez remplir le formulaire.")
+        print("Veuillez remplir le formulaire d'inscription.")
 
     def make_choice(self):
 
-        answers = prompt(self.__questions)
+        reponses = prompt(self.__questions)
 
 
         from DAO.profilDAO import ProfilDAO
-        profil = ProfilDAO().find_by_id(answers['email'])
+        profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
-            print('L\'addresse mail est deja prise')
+            print('L\'addresse email est deja prise')
             from view.start_view import StartView
             return StartView()
         else:
-            Session().profil = Profil(answers['nom'], answers['prenom'], answers['date_naissance'], answers['civilite'], answers['email'] , answers['mdp'])
+            Session().profil = Profil(reponses['nom'], reponses['prenom'], reponses['date_naissance'], reponses['civilite'], reponses['email'] , reponses['mdp'])
             ProfilDAO().create_profil(Session().profil)
             from view.menu_view import MenuView
             return MenuView()

@@ -8,8 +8,18 @@ class TrajetDAO(metaclass=Singleton):
     """Classe permettant la communication avec notre base de données en ce qui concerne les trajets.
     Elle permet de récupérer des trajets depuis notre base de données mais aussi d'en ajouter. 
     """
+    def find_max_id(self):
+        request = "SELECT max(id) as maximum FROM trajet " 
+                  
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute( 
+                    request )
+                resultat = cursor.fetchall()
+            return resultat
 
-    def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee ) -> Trajet:
+
+    def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee : str ) -> Trajet:
 
         """Fonction permettant de récupérer, dans la base de données, les trajets
         correspondant aux informations données, et de stocker les informations de ces trajets
@@ -34,7 +44,7 @@ class TrajetDAO(metaclass=Singleton):
         """
 
         request = "SELECT * FROM trajet " \
-                  "WHERE date_depart = %(date_depart)s and heure_depart = %(heure_depart)s "\
+                  "WHERE date = %(date_depart)s and heure_depart = %(heure_depart)s "\
                   "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
 
         with DBConnection().connection as connection:
@@ -43,12 +53,14 @@ class TrajetDAO(metaclass=Singleton):
                     request, {"date_depart" : date_depart,"heure_depart" : heure_depart,"ville_depart" : ville_depart,"ville_arrivee" : ville_arrivee}
                 )
                 res = cursor.fetchall()
-        trajets=[]
+
+        tjs=[]
         if res :
+            
             for t in res :
                 trajet = Trajet(ville_depart = t['ville_depart'], 
                             id=t['id'],
-                            date_depart = t['date_depart'], 
+                            date_depart= t['date'], 
                             heure_depart = t['heure_depart'],
                             ville_arrivee = t['ville_arrivee'], 
                             heure_arrivee = t['heure_arrivee'],
@@ -56,9 +68,9 @@ class TrajetDAO(metaclass=Singleton):
                             disponibilite_max=t['disponibilite_max']
 
                             )
-                trajets=trajets.append(trajet)   
-        return trajets
-
+                tjs+=[trajet]
+                
+        return tjs 
     def insert_trajets(self,trajets : list[Trajet]):
         
         """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir

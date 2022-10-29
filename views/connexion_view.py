@@ -25,12 +25,12 @@ class   ConnexionView(AbstractView):
 
     def make_choice(self):
         
-        answers = prompt(self.__questions)
+        reponses = prompt(self.__questions)
 
         from DAO.profilDAO import ProfilDAO
-        profil = ProfilDAO().find_by_id(answers['email'])
+        profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
-            if profil._mot_de_passe == answers['mdp']:
+            if profil._mot_de_passe == reponses['mdp']:
                 Session().profil = profil
                 from view.menu_view import MenuView
                 return MenuView()
