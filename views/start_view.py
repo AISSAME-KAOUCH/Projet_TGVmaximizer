@@ -6,7 +6,7 @@ from view.session import Session
 
 
 
-class MenuView(AbstractView):
+class StartView(AbstractView):
 
     def __init__(self):
         self.__questions = [
@@ -15,27 +15,29 @@ class MenuView(AbstractView):
                 'name': 'choice',
                 'message': '',
                 'choices': [
-                    'Filtre de recherche'
-                    , 'Modifier son profil'
+                    'Connexion'
+                    , 'Inscription'
                     , 'Quitter'
                 ]
             }
         ]
 
     def display_info(self):
-        print(f'Veuillez choisir une action {Session().profil._prenom}.')
+        print('Bonjour, veuillez choisir une action.')
         
 
     def make_choice(self):
         
         reponse = prompt(self.__questions)
         
-        if reponse['choice'] == 'Filtre de recherche':
-            from view.filtre_view import FiltreView
-            return FiltreView()
-        if reponse['choice'] == 'Modifier son profil':
-            from view.modifier_profil_vue import ModifierView
-            return ModifierView()
+        if reponse['choice'] == 'Connexion':
+            from view.connexion_view import ConnexionView
+            return ConnexionView()
+        elif reponse['choice'] == 'Inscription':
+            from view.inscription_view import InscriptionView
+            return InscriptionView()
         elif reponse['choice'] == 'Quitter':
             return None
 
+        
+        
