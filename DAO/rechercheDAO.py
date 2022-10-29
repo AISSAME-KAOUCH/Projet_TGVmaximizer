@@ -1,6 +1,7 @@
 from DAO.db_connection import DBConnection
 from business_object.profil import Profil
 import requests
+from business_object.recherches.abstract_recherche import AbstractRecherche
 from utils.singleton import Singleton
 from business_object.trajet import Trajet
 
@@ -18,14 +19,14 @@ class RechercheDAO(metaclass=Singleton):
         
 
 
-    def delete(recherche : Recherche) : 
+    def delete(recherche ) : 
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("DELETE FROM recherche WHERE id = %(id)s and email = %(email)s "\
                     , {"id" : trajet.id
                     , "email" : profil._email})
 
-    def save(profil :Profil, recherche :  Recherche) :
+    def save(profil :Profil, recherche ) :
         self.create(profil,recherche)
 
     def find_by_id(trajet : Trajet ):
@@ -37,7 +38,7 @@ class RechercheDAO(metaclass=Singleton):
         return cursor.fetchall()
 
     
-    def update(recherche: Recherche):
+    def update(recherche):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET email = %(email)s , date = %(date)s , heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
@@ -47,7 +48,7 @@ class RechercheDAO(metaclass=Singleton):
                     , "heure" : recherche.heure
                     ,"ville_de_depart" : recherche.depart})
 
-    def creer_alerte(recherche : Recherche ,choix : str):
+    def creer_alerte(recherche ,choix : str):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET choix_alerte = %(choix)s"\

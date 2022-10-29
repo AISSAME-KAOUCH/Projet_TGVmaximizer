@@ -71,7 +71,7 @@ class TrajetDAO(metaclass=Singleton):
                 tjs+=[trajet]
                 
         return tjs 
-    def insert_trajets(self,trajets : list[Trajet]):
+    def insert_trajets(self,trajets):
         
         """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir
         d'objets métiers Trajet.
