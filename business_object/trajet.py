@@ -4,7 +4,7 @@ class Trajet :
 
     "Trajet contenant les informations du voyage en train."
 
-    def __init__(self, id = None, ville_depart, date_depart, heure_depart,
+    def __init__(self, id , ville_depart, date_depart, heure_depart,
                 ville_arrivee, heure_arrivee, numero_train,disponibilite_max):
 
         """ Constructeur permettant l'instanciation d'un objet Trajet.
