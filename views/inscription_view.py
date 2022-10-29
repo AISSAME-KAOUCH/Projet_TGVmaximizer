@@ -1,14 +1,17 @@
 from pprint import pprint
-
 from PyInquirer import prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 from business_object.profil import Profil
 
-
 class InscriptionView(AbstractView):
     def __init__(self) -> None:
         self.__questions = [
+            {
+                'type': 'input',
+                'name': 'civilite',
+                'message': 'Quel est votre sexe ? Saisir au format H ou M',
+            },
             {
                 'type': 'input',
                 'name': 'prenom',
@@ -34,12 +37,6 @@ class InscriptionView(AbstractView):
                 'name': 'mdp',
                 'message': 'Choisir un mot de passe :',
             },
-            {
-                'type': 'input',
-                'name': 'civilite',
-                'message': 'Quel est votre sexe ? Saisir au format H ou M',
-            }
-
         ]
 
     def display_info(self):
@@ -49,7 +46,6 @@ class InscriptionView(AbstractView):
 
         reponses = prompt(self.__questions)
 
-
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
@@ -57,7 +53,7 @@ class InscriptionView(AbstractView):
             from view.start_view import StartView
             return StartView()
         else:
-            Session().profil = Profil(reponses['nom'], reponses['prenom'], reponses['date_naissance'], reponses['civilite'], reponses['email'] , reponses['mdp'])
+            Session().profil = Profil(reponses['civilite'],  reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , reponses['mdp'])
             ProfilDAO().create_profil(Session().profil)
             from view.menu_view import MenuView
             return MenuView()

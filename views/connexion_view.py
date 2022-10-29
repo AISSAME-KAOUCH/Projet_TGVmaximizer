@@ -1,10 +1,7 @@
 from pprint import pprint
-
 from PyInquirer import  prompt
 from view.abstract_view import AbstractView
 from view.session import Session
-
-
 
 class   ConnexionView(AbstractView):
     def __init__(self) -> None:

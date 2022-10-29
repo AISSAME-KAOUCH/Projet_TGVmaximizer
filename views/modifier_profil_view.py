@@ -1,10 +1,6 @@
 from PyInquirer import Separator, prompt
-
 from view.abstract_view import AbstractView
 from view.session import Session
-
-
-
 
 class ModifierView(AbstractView):
 
@@ -21,7 +17,8 @@ class ModifierView(AbstractView):
                     , 'modifier nom'
                     , 'retour menu'
                 ]
-            }]
+            }
+        ]
 
 
     def display_info(self):
@@ -31,7 +28,6 @@ class ModifierView(AbstractView):
     def make_choice(self):
         
         reponse = prompt(self.__questions)
-        
 
         if reponse['choice'] == 'retour menu':
             from view.menu_view import MenuView
