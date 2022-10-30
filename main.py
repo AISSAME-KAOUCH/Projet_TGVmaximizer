@@ -1,8 +1,8 @@
-#from view.start_view import StartView
+from views.start_view import StartView
 from client.trajet_client import Trajetclient
 from business_object.trajet import Trajet
 from DAO.trajetDAO import TrajetDAO
-"""
+
 if __name__ == '__main__':
     # run the StartView
     current_view = StartView()
@@ -12,8 +12,8 @@ if __name__ == '__main__':
         print('-----------------')
         current_view.display_info()
         current_view = current_view.make_choice()
-"""
 
+"""
 if __name__=='__main__' :
     trajet=Trajetclient()
     test=TrajetDAO()
@@ -34,6 +34,6 @@ if __name__=='__main__' :
         print(t.__str__())      
     #for i in res :
     #    print(i.__str__())
-    
+"""    
 
     

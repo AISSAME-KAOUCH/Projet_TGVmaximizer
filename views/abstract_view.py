@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from view.session import Session
+from views.session import Session
 
 class AbstractView(ABC):
 

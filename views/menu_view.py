@@ -1,6 +1,6 @@
 from PyInquirer import Separator, prompt
-from view.abstract_view import AbstractView
-from view.session import Session
+from views.abstract_view import AbstractView
+from views.session import Session
 
 class MenuView(AbstractView):
 
@@ -19,7 +19,7 @@ class MenuView(AbstractView):
         ]
 
     def display_info(self):
-        print(f'Veuillez choisir une action {Session().profil._prenom}.')
+        print(f'Bonjour {Session().profil._prenom}, veuillez choisir une action.')
 
     def make_choice(self):
         

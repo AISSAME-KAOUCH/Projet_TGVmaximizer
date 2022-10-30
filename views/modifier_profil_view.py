@@ -1,6 +1,6 @@
 from PyInquirer import Separator, prompt
-from view.abstract_view import AbstractView
-from view.session import Session
+from views.abstract_view import AbstractView
+from views.session import Session
 
 class ModifierView(AbstractView):
 
@@ -22,7 +22,7 @@ class ModifierView(AbstractView):
 
 
     def display_info(self):
-        print(f'Veuillez choisir une action {Session().profil._prenom}.')
+        print('Veuillez choisir une action.')
         
 
     def make_choice(self):
@@ -41,7 +41,7 @@ class ModifierView(AbstractView):
         res = prompt(modifier)
         
         if reponse['choice'] == 'modifier mot de passe': 
-            #action a faire         
+            #action a faire         session().profil.mdp
             from view.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier addresse mail':
