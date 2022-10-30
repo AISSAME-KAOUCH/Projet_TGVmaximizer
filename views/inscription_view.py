@@ -1,4 +1,3 @@
-from pprint import pprint
 from PyInquirer import prompt
 from views.abstract_view import AbstractView
 from views.session import Session
