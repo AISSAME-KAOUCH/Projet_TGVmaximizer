@@ -15,8 +15,8 @@ class TrajetDAO(metaclass=Singleton):
             with connection.cursor() as cursor:
                 cursor.execute( 
                     request )
-                resultat = cursor.fetchall()
-            return resultat
+                resultat = dict(cursor.fetchone())
+            return resultat['maximum']
 
 
     def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee : str ) -> Trajet:
@@ -44,7 +44,7 @@ class TrajetDAO(metaclass=Singleton):
         """
 
         request = "SELECT * FROM trajet " \
-                  "WHERE date = %(date_depart)s and heure_depart = %(heure_depart)s "\
+                  "WHERE date = %(date_depart)s and heure_depart >= %(heure_depart)s "\
                   "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s"
 
         with DBConnection().connection as connection:
@@ -58,20 +58,18 @@ class TrajetDAO(metaclass=Singleton):
         if res :
             
             for t in res :
-                trajet = Trajet(ville_depart = t['ville_depart'], 
-                            id=t['id'],
-                            date_depart= t['date'], 
-                            heure_depart = t['heure_depart'],
-                            ville_arrivee = t['ville_arrivee'], 
-                            heure_arrivee = t['heure_arrivee'],
-                            numero_train=t['numero_train'],
-                            disponibilite_max=t['disponibilite_max']
-
-                            )
+                trajet = Trajet(id=t['id'],
+                ville_depart = t['ville_depart'],
+                date_depart= t['date'], 
+                heure_depart = t['heure_depart'],
+                ville_arrivee = t['ville_arrivee'], 
+                heure_arrivee = t['heure_arrivee'],
+                numero_train=t['numero_train'],
+                disponibilite_max=t['disponibilite_max'])
                 tjs+=[trajet]
                 
         return tjs 
-    def insert_trajets(self,trajets : list[Trajet]):
+    def insert_trajets(self,trajets):
         
         """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir
         d'objets métiers Trajet.
@@ -100,3 +98,9 @@ class TrajetDAO(metaclass=Singleton):
                             , "numero_train" : trajets[i].numero_train
                             , "disponibilite_max" : trajets[i].disponibilite_max
                             })
+    def find_id(self,trajet : Trajet):
+        with DBConnection().connection as connection :
+            with connection.cursor() as cursor :
+                cursor.execute('SELECT id FROM trajet WHERE id =  %(id)s'\
+                    ,{"id" : trajet.id})
+        return cursor.fetchone()
