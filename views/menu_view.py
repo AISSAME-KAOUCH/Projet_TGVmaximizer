@@ -26,10 +26,10 @@ class MenuView(AbstractView):
         reponses = prompt(self.__questions)
         
         if reponses['choice'] == 'Filtre de recherche':
-            from view.filtre_view import FiltreView
+            from views.filtre_view import FiltreView
             return FiltreView()
         if reponses['choice'] == 'Modifier son profil':
-            from view.modifier_profil_view import ModifierView
+            from views.modifier_profil_view import ModifierView
             return ModifierView()
         elif reponses['choice'] == 'Quitter':
             return None

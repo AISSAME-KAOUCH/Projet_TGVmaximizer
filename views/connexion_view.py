@@ -29,9 +29,9 @@ class   ConnexionView(AbstractView):
         if profil:
             if profil._mot_de_passe == reponses['mdp']:
                 Session().profil = profil
-                from view.menu_view import MenuView
+                from views.menu_view import MenuView
                 return MenuView()
-        else:
-            print('Identifiant / mot de passe non reconnu.')
-            from view.start_view import StartView
-            return StartView()
+        
+        print('Identifiant / mot de passe non reconnu.')
+        from views.start_view import StartView
+        return StartView()

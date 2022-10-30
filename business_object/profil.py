@@ -11,23 +11,23 @@ class Profil :
 
         Parameters
         ----------
-        nom : str
-            nom de famille de l'utilisateur
-        prenom : str
-            prénom de l'utilisateur
-        date_de_naissance : str
-            date de naissance de l'utilisateur
         civilite : str
             civilite de l'utilisateur
+        prenom : str
+            prénom de l'utilisateur
+        nom : str
+            nom de famille de l'utilisateur
+        date_de_naissance : str
+            date de naissance de l'utilisateur
         email : str 
             adresse mail de l'utilisateur
         mot de passe : str
             mot de passe de l'utilisateur
         """
-        self._nom = nom 
-        self._prenom = prenom
-        self._date_de_naissance = date_de_naissance
         self._civilite = civilite
+        self._prenom = prenom
+        self._nom = nom 
+        self._date_de_naissance = date_de_naissance
         self.email = email
         self._mot_de_passe = mot_de_passe
 
@@ -127,7 +127,7 @@ class Profil :
             None
         """
         choix  = 0 
-        while choix > 6 or choix < 1 :
+        while choix < 1 or choix > 6 :
             choix = int(input(' 1. Modifier le mot de passe \n'
             '2. Modifier le nom \n'
             '3. Modifier le prenom \n'
@@ -135,8 +135,12 @@ class Profil :
             '5. Modifier la date de naissance \n'
             '6. Modifier l\'adresse mail \n'
             'Taper le numéro correspondant :'))
-            actions = {1: self.modifier_mdp,2:self.modifier_nom,3:self.modifier_prenom,4:self.modifier_civilite,
-            5:self.modifier_date_de_naissance,6:self.modifier_email}
+            actions = {1: self.modifier_mdp,
+                       2:self.modifier_nom,
+                       3:self.modifier_prenom,
+                       4:self.modifier_civilite,
+                       5:self.modifier_date_de_naissance,
+                       6:self.modifier_email}
             action = actions.get(choix)
             action(input("entrer la nouvelle valeur :"))
         

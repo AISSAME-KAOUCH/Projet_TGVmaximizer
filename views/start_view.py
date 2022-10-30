@@ -27,10 +27,10 @@ class StartView(AbstractView):
         reponse = prompt(self.__questions)
         
         if reponse['choice'] == 'Connexion':
-            from view.connexion_view import ConnexionView
+            from views.connexion_view import ConnexionView
             return ConnexionView()
         elif reponse['choice'] == 'Inscription':
-            from view.inscription_view import InscriptionView
+            from views.inscription_view import InscriptionView
             return InscriptionView()
         elif reponse['choice'] == 'Quitter':
             return None

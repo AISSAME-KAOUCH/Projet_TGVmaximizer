@@ -50,12 +50,12 @@ class InscriptionView(AbstractView):
         profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
             print('L\'addresse email est deja prise')
-            from view.start_view import StartView
+            from views.start_view import StartView
             return StartView()
         else:
             Session().profil = Profil(reponses['civilite'],  reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , reponses['mdp'])
             ProfilDAO().create_profil(Session().profil)
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         
         

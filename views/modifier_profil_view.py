@@ -30,7 +30,7 @@ class ModifierView(AbstractView):
         reponse = prompt(self.__questions)
 
         if reponse['choice'] == 'retour menu':
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         
         modifier = [{
@@ -42,18 +42,18 @@ class ModifierView(AbstractView):
         
         if reponse['choice'] == 'modifier mot de passe': 
             #action a faire         session().profil.mdp
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier addresse mail':
             #action a faire 
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier prenom':
             #action a faire 
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         elif reponse['choice'] == 'modifier nom':
             #action a faire 
-            from view.menu_view import MenuView
+            from views.menu_view import MenuView
             return MenuView()
         

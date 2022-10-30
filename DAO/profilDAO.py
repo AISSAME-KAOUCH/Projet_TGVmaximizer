@@ -17,7 +17,7 @@ class ProfilDAO(metaclass=Singleton):
         Parameters
         ----------
         email : str
-            email de correspondant au profil que l'on souhaite importer
+            email correspondant au profil que l'on souhaite importer
         ----------
         Returns
         ----------
@@ -120,12 +120,12 @@ class ProfilDAO(metaclass=Singleton):
         
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
-                cursor.execute('INSERT INTO profil (email,nom,prenom,mot_de_passe,civilite,date_de_naissance) '\
-                    'VALUES (%(email)s, %(nom)s,%(prenom)s,%(mot_de_passe)s,%(civilite)s,%(date_de_naissance)s)'\
-                        ,{"email": profil.email
-                        , "nom" : profil._nom
+                cursor.execute('INSERT INTO profil (civilite, prenom, nom, date_de_naissance, email, mot_de_passe) '\
+                    'VALUES (%(civilite)s, %(prenom)s, %(nom)s, %(date_de_naissance)s, %(email)s, %(mot_de_passe)s)'\
+                        ,{"civilite" : profil._civilite
                         , "prenom" : profil._prenom
-                        , "mot_de_passe": profil._mot_de_passe
-                        , "civilite" : profil._civilite
-                        , "date_de_naissance" : profil._date_de_naissance})
+                        , "nom" : profil._nom
+                        , "date_de_naissance" : profil._date_de_naissance
+                        , "email": profil.email
+                        , "mot_de_passe": profil._mot_de_passe})
                 #res = cursor.fetchall()

@@ -44,7 +44,7 @@ class FiltreView(AbstractView):
 
         reponses = prompt(self.__questions)
 
-        from view.menu_view import MenuView
+        from views.menu_view import MenuView
         return MenuView()
         
         
