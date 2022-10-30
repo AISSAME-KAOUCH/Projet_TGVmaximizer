@@ -1,3 +1,5 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 CREATE TABLE profil (
     civilite TEXT, 

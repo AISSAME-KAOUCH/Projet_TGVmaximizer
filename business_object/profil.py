@@ -6,7 +6,7 @@ class Profil :
         numériquement dans l'application.
     """
 
-    def __init__(self, nom, prenom, date_de_naissance, civilite, email, mot_de_passe):
+    def __init__(self, civilite, prenom, nom, date_de_naissance, email, mot_de_passe):
         """ Constructeur permettant l'instanciation d'un objet Profil.
 
         Parameters
@@ -45,7 +45,7 @@ class Profil :
         """
         self._mot_de_passe = new_pass
     
-    def modifier_nom(self,nom):
+    def modifier_nom(self, nom):
         """ Fonction permettant de modifier le nom de l'utilisateur
 
         Parameters
@@ -59,7 +59,7 @@ class Profil :
         """
         self._nom = nom
     
-    def modifier_prenom(self,prenom):
+    def modifier_prenom(self, prenom):
         """ Fonction permettant de modifier le prénom de l'utilisateur
 
         Parameters
@@ -73,7 +73,7 @@ class Profil :
         """
         self._prenom = prenom
 
-    def modifier_civilite(self,civilite):
+    def modifier_civilite(self, civilite):
         """ Fonction permettant de modifier la civilité de l'utilisateur
 
         Parameters
@@ -87,7 +87,7 @@ class Profil :
         """
         self._civilite = civilite
     
-    def modifier_date_de_naissance(self,date):
+    def modifier_date_de_naissance(self, date):
         """ Fonction permettant de modifier la date de naissance de l'utilisateur
 
         Parameters
@@ -101,7 +101,7 @@ class Profil :
         """
         self._date_de_naissance = date
     
-    def modifier_email(self,mail):
+    def modifier_email(self, mail):
         """ Fonction permettant de modifier l'adresse mail de l'utilisateur
 
         Parameters
@@ -135,7 +135,7 @@ class Profil :
             '5. Modifier la date de naissance \n'
             '6. Modifier l\'adresse mail \n'
             'Taper le numéro correspondant :'))
-            actions = {1: self.modifier_mdp,
+            actions = {1:self.modifier_mdp,
                        2:self.modifier_nom,
                        3:self.modifier_prenom,
                        4:self.modifier_civilite,

@@ -9,8 +9,8 @@ class RechercheDAO(metaclass=Singleton):
     def create(profil : Profil, trajet : Trajet) :
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
-                cursor.execute("INSERT INTO recherche(id, email,date,heure,ville_de_depart)"\
-                    "VALUES %(id)s, %(email)s ,%(date)s ,%(heure)s ,%(ville_de_depart)s "\
+                cursor.execute("INSERT INTO recherche(id, email, date, heure, ville_de_depart)"\
+                    "VALUES %(id)s, %(email)s, %(date)s, %(heure)s, %(ville_de_depart)s "\
                     , {"id" : trajet.id
                     , "email" : profil._email
                     , "date" : trajet.date_depart
@@ -26,7 +26,7 @@ class RechercheDAO(metaclass=Singleton):
                     , {"id" : trajet.id
                     , "email" : profil._email})
 
-    def save(profil :Profil, recherche ) :
+    def save(profil: Profil, recherche ) :
         self.create(profil,recherche)
 
     def find_by_id(trajet : Trajet ):
@@ -41,7 +41,7 @@ class RechercheDAO(metaclass=Singleton):
     def update(recherche):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
-                cursor.execute("UPDATE recherche SET email = %(email)s , date = %(date)s , heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
+                cursor.execute("UPDATE recherche SET email = %(email)s, date = %(date)s, heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
                     "WHERE id = %(id)s"\
                     , {"email" : recherche.email
                     , "date" : recherche.date
