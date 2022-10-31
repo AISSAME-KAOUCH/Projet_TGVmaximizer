@@ -11,11 +11,11 @@ class ModifierView(AbstractView):
                 'name': 'choice',
                 'message': '',
                 'choices': [
-                    'modifier mot de passe'
-                    , 'modifier addresse mail'
-                    , 'modifier prenom'
-                    , 'modifier nom'
-                    , 'retour menu'
+                    'Modifier mot de passe'
+                    , 'Modifier addresse mail'
+                    , 'Modifier prenom'
+                    , 'Modifier nom'
+                    , 'Retour menu'
                 ]
             }
         ]
@@ -40,8 +40,13 @@ class ModifierView(AbstractView):
             }]
         res = prompt(modifier)
         
-        if reponse['choice'] == 'modifier mot de passe': 
-            #action a faire 
+        if reponse['choice'] == 'modifier mot de passe':
+            profil_modifie = Session().profil
+            profil_modifie._mot_de_passe = res['input']
+            ProfilDAO().modifier_profil(profil_modifie)
+
+            print(session().profil)
+
             from views.menu_view import MenuView
             return MenuView()
 

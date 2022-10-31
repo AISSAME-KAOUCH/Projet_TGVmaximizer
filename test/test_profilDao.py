@@ -7,7 +7,7 @@ class TestProfilDAO(TestCase):
 
     def test_create_profil(self):
         profil_dao = ProfilDAO()
-        profil = Profil("Dupont", "Jean", "02-03-2000", "M", "jean.dupont@gmail.com", "super_mdp")
+        profil = Profil("M", "Jean", "Dupont", "02-03-2000", "jean.dupont@gmail.com", "super_mdp")
         created = profil_dao.create_profil(profil)
 
     def test_find_by_id(self):
@@ -18,13 +18,13 @@ class TestProfilDAO(TestCase):
 
     def test_modifier_mot_de_passe(self):
         profil_dao = ProfilDAO()
-        profil_modifie = Profil("Dupont", "Jean", "02-03-2000", "M", "jean.dupont@gmail.com", "super_mdp2")
+        profil_modifie = Profil("M", "Jean", "Dupont", "02-03-2000", "jean.dupont@gmail.com", "super_mdp2")
         updated = profil_dao.modifier_mot_de_passe(profil_modifie)
         self.assertTrue(updated)
 
     def test_modifier_profil(self):
         profil_dao = ProfilDAO()
-        profil_modifie = Profil("Dupont", "Jean", "02-03-2002", "M", "jean.dupont@gmail.com", "super_mdp2")
+        profil_modifie = Profil("M", "Jean", "Dupont", "02-03-2002", "jean.dupont@gmail.com", "super_mdp")
         updated = profil_dao.modifier_profil(profil_modifie)
         self.assertTrue(updated)
 

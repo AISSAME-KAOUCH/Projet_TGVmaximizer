@@ -11,9 +11,10 @@ class StartView(AbstractView):
                     'name': 'choice',
                     'message': '',
                     'choices': [
-                        'Aller simple'
-                        , 'Aller retour'
-                        , 'Quitter'
+                        'Recherche aller simple'
+                        , 'Recherche aller retour'
+                        , 'Recherche 30 jours'
+                        , 'Retour menu'
                     ]
                 }
             ]
