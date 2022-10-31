@@ -1,6 +1,7 @@
 from PyInquirer import Separator, prompt
 from views.abstract_view import AbstractView
 from views.session import Session
+from DAO.profilDAO import ProfilDAO
 
 class ModifierView(AbstractView):
 
@@ -40,12 +41,10 @@ class ModifierView(AbstractView):
             }]
         res = prompt(modifier)
         
-        if reponse['choice'] == 'modifier mot de passe':
-            profil_modifie = Session().profil
-            profil_modifie._mot_de_passe = res['input']
-            ProfilDAO().modifier_profil(profil_modifie)
-
-            print(session().profil)
+        if reponse['choice'] == 'Modifier mot de passe':
+            print('Antoine le monstre')
+            Session().profil.modifier_mdp(res['input'])
+            ProfilDAO().modifier_mot_de_passe(Session().profil)
 
             from views.menu_view import MenuView
             return MenuView()
