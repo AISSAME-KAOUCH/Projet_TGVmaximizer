@@ -42,7 +42,6 @@ class ModifierView(AbstractView):
         res = prompt(modifier)
         
         if reponse['choice'] == 'Modifier mot de passe':
-            print('Antoine le monstre')
             Session().profil.modifier_mdp(res['input'])
             ProfilDAO().modifier_mot_de_passe(Session().profil)
 
