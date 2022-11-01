@@ -37,28 +37,31 @@ class ModifierView(AbstractView):
         modifier = [{
                 'type': 'input',
                 'name': 'input',
-                'message': 'Saisir'
+                'message': 'Entrer la nouvelle donnée :'
             }]
         res = prompt(modifier)
         
         if reponse['choice'] == 'Modifier mot de passe':
             Session().profil.modifier_mdp(res['input'])
             ProfilDAO().modifier_mot_de_passe(Session().profil)
+            from views.menu_view import MenuView
+            return MenuView()
+
+        elif reponse['choice'] == 'Modifier addresse mail':
+            Session().profil.modifier_email(res['input'])
+            ProfilDAO().modifier_profil(Session().profil)
+
+            print(Session().profil)
 
             from views.menu_view import MenuView
             return MenuView()
 
-        elif reponse['choice'] == 'modifier addresse mail':
+        elif reponse['choice'] == 'Modifier prenom':
             #action a faire 
             from views.menu_view import MenuView
             return MenuView()
 
-        elif reponse['choice'] == 'modifier prenom':
-            #action a faire 
-            from views.menu_view import MenuView
-            return MenuView()
-
-        elif reponse['choice'] == 'modifier nom':
+        elif reponse['choice'] == 'Modifier nom':
             #action a faire 
             from views.menu_view import MenuView
             return MenuView()

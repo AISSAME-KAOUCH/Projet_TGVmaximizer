@@ -11,9 +11,9 @@ class MenuView(AbstractView):
                 'name': 'choice',
                 'message': '',
                 'choices': [
-                    'Filtre de recherche'
-                    , 'Modifier son profil'
-                    , 'Quitter'
+                    'Recherche de trajet(s)'
+                    , 'Modifier mon profil'
+                    , 'Deconnexion'
                 ]
             }
         ]
@@ -25,12 +25,12 @@ class MenuView(AbstractView):
         
         reponses = prompt(self.__questions)
         
-        if reponses['choice'] == 'Filtre de recherche':
-            from views.filtre_view import FiltreView
-            return FiltreView()
-        if reponses['choice'] == 'Modifier son profil':
+        if reponses['choice'] == 'Recherche de trajet(s)':
+            from views.type_recherche_view import RechercheView
+            return RechercheView()
+        if reponses['choice'] == 'Modifier mon profil':
             from views.modifier_profil_view import ModifierView
             return ModifierView()
-        elif reponses['choice'] == 'Quitter':
-            return None
-
+        elif reponses['choice'] == 'Deconnexion':
+            from views.start_view import StartView
+            return StartView()

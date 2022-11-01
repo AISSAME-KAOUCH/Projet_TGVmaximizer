@@ -34,7 +34,7 @@ class Trajet :
         self.ville_arrivee = ville_arrivee
         self.heure_arrivee = heure_arrivee
         self.numero_train = numero_train
-        self.disponibilite_max=disponibilite_max
+        self.disponibilite_max = disponibilite_max
 
     
     def __str__(self):

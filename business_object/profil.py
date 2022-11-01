@@ -30,35 +30,21 @@ class Profil :
         self._date_de_naissance = date_de_naissance
         self.email = email
         self._mot_de_passe = mot_de_passe
-
-    def modifier_mdp(self, new_pass):
-        """ Fonction permettant de modifier le mot de passe de l'utilisateur
+    
+    def modifier_civilite(self, civilite):
+        """ Fonction permettant de modifier la civilité de l'utilisateur
 
         Parameters
         ----------
-        new_pass : str
-            nouveau mot de passe
+        civilite : str
+            nouvelle civilité
 
         Returns
         -------
             None
         """
-        self._mot_de_passe = new_pass
-    
-    def modifier_nom(self, nom):
-        """ Fonction permettant de modifier le nom de l'utilisateur
+        self._civilite = civilite
 
-        Parameters
-        ----------
-        nom : str
-            nouveau nom
-
-        Returns
-        -------
-            None
-        """
-        self._nom = nom
-    
     def modifier_prenom(self, prenom):
         """ Fonction permettant de modifier le prénom de l'utilisateur
 
@@ -73,19 +59,19 @@ class Profil :
         """
         self._prenom = prenom
 
-    def modifier_civilite(self, civilite):
-        """ Fonction permettant de modifier la civilité de l'utilisateur
+    def modifier_nom(self, nom):
+        """ Fonction permettant de modifier le nom de l'utilisateur
 
         Parameters
         ----------
-        civilite : str
-            nouvelle civilité
+        nom : str
+            nouveau nom
 
         Returns
         -------
             None
         """
-        self._civilite = civilite
+        self._nom = nom
     
     def modifier_date_de_naissance(self, date):
         """ Fonction permettant de modifier la date de naissance de l'utilisateur
@@ -115,6 +101,21 @@ class Profil :
         """
         self.email = mail
     
+    def modifier_mdp(self, new_pass):
+        """ Fonction permettant de modifier le mot de passe de l'utilisateur
+
+        Parameters
+        ----------
+        new_pass : str
+            nouveau mot de passe
+
+        Returns
+        -------
+            None
+        """
+        self._mot_de_passe = new_pass
+    
+
     def modifier_profil(self):
         """ Fonction permettant de modifier un ou plusieurs élément du profil de l'utilisateur.
         Cette fonction fait appel aux precédentes fonctions de modification.
@@ -128,19 +129,20 @@ class Profil :
         """
         choix  = 0 
         while choix < 1 or choix > 6 :
-            choix = int(input(' 1. Modifier le mot de passe \n'
-            '2. Modifier le nom \n'
-            '3. Modifier le prenom \n'
-            '4. Modifier la civilité \n'
-            '5. Modifier la date de naissance \n'
-            '6. Modifier l\'adresse mail \n'
+            choix = int(input(
+            '1. Modifier la civilité \n'
+            '2. Modifier le prenom \n'
+            '3. Modifier le nom \n'
+            '4. Modifier la date de naissance \n'
+            '5. Modifier l\'adresse mail \n'
+            '6. Modifier le mot de passe \n'
             'Taper le numéro correspondant :'))
-            actions = {1:self.modifier_mdp,
-                       2:self.modifier_nom,
-                       3:self.modifier_prenom,
-                       4:self.modifier_civilite,
-                       5:self.modifier_date_de_naissance,
-                       6:self.modifier_email}
+            actions = {1:self.modifier_civilite,
+                       2:self.modifier_prenom,
+                       3:self.modifier_nom,
+                       4:self.modifier_date_de_naissance,
+                       5:self.modifier_email,
+                       6:self.modifier_mdp}
             action = actions.get(choix)
             action(input("entrer la nouvelle valeur :"))
         
