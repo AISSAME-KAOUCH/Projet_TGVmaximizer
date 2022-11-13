@@ -12,10 +12,10 @@ class ModifierView(AbstractView):
                 'name': 'choice',
                 'message': '',
                 'choices': [
-                    'Modifier mot de passe'
-                    , 'Modifier addresse mail'
+                    'Modifier civilite'
                     , 'Modifier prenom'
                     , 'Modifier nom'
+                    , 'Modifier mot de passe'
                     , 'Retour menu'
                 ]
             }
@@ -40,29 +40,28 @@ class ModifierView(AbstractView):
                 'message': 'Entrer la nouvelle donnée :'
             }]
         res = prompt(modifier)
-        
-        if reponse['choice'] == 'Modifier mot de passe':
-            Session().profil.modifier_mdp(res['input'])
-            ProfilDAO().modifier_mot_de_passe(Session().profil)
-            from views.menu_view import MenuView
-            return MenuView()
 
-        elif reponse['choice'] == 'Modifier addresse mail':
-            Session().profil.modifier_email(res['input'])
+        if reponse['choice'] == 'Modifier civilite':
+            Session().profil.modifier_civilite(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
-
-            print(Session().profil)
-
             from views.menu_view import MenuView
             return MenuView()
 
         elif reponse['choice'] == 'Modifier prenom':
-            #action a faire 
+            Session().profil.modifier_prenom(res['input'])
+            ProfilDAO().modifier_profil(Session().profil)
             from views.menu_view import MenuView
             return MenuView()
 
         elif reponse['choice'] == 'Modifier nom':
-            #action a faire 
+            Session().profil.modifier_nom(res['input'])
+            ProfilDAO().modifier_profil(Session().profil)
+            from views.menu_view import MenuView
+            return MenuView()
+        
+        elif reponse['choice'] == 'Modifier mot de passe':
+            Session().profil.modifier_mdp(res['input'])
+            ProfilDAO().modifier_mot_de_passe(Session().profil)          
             from views.menu_view import MenuView
             return MenuView()
         

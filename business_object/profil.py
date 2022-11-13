@@ -30,6 +30,7 @@ class Profil :
         self._date_de_naissance = date_de_naissance
         self.email = email
         self._mot_de_passe = mot_de_passe
+        self._recherches = []
     
     def modifier_civilite(self, civilite):
         """ Fonction permettant de modifier la civilité de l'utilisateur
@@ -168,6 +169,11 @@ class Profil :
             res = 'pas éligible'
         return res 
 
+    def ajouter_recherche(self, recherche):
+        self._recherches.append(recherche)
+        recherche.sauvegarder()
+
+
     def __str__(self): 
         """ Fonction permettant d'afficher les information du profil (toutes sauf le mot de passe)
 
@@ -180,4 +186,4 @@ class Profil :
         """
         return 'Profil de {}. {} {} :\n Email: {} \n Date de naissance : {} '.format(self._civilite,self._nom, self._prenom,self.email,self._date_de_naissance)  
 
-
+    

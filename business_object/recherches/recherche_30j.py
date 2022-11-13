@@ -11,7 +11,7 @@ class Recherche_30j(AbstractRecherche):
         return rechercheDAO.find_by_id(self.trajet)
     
     def sauvegarder(self):
-        rechercheDAO.sauvegarder(self.trajet, self.profil)
+        rechercheDAO.save(self.profil, self.trajet)
 
     def creer_alerte(self, choix):
         if choix == "oui":

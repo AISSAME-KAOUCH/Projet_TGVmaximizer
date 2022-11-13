@@ -26,8 +26,8 @@ class RechercheDAO(metaclass=Singleton):
                     , {"id" : trajet.id
                     , "email" : profil._email})
 
-    def save(profil: Profil, recherche ) :
-        self.create(profil,recherche)
+    def save(profil: Profil, trajet ) :
+        self.create(profil, trajet)
 
     def find_by_id(trajet : Trajet ):
         with DBConnection().connection as connection :
