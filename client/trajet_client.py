@@ -9,7 +9,7 @@ class Trajetclient :
     #def __init__(self) -> None:
     #    self.__HOST =os.environ["HOST_WEBSERVICE"]
 
-    def get_trajets(self, annee,mois,jour,ville_d,ville_arrivee,id_initiale) :
+    def get_trajets(self, annee, mois, jour, ville_d, ville_arrivee, id_initiale) :
         req = requests.get(f"{HOST_WEBSERVICE}{END_POINT}&refine.date={annee}%2F{mois}%2F{jour}&refine.origine={ville_d}&refine.destination={ville_arrivee}")
         dic=req.json()
         resultat=dic['records']
@@ -21,6 +21,7 @@ class Trajetclient :
             trajets.append(tj)  
             j+=1
         return trajets
+        
 if __name__=='__main__' :
     trajet=Trajetclient()
     resultat=trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")

@@ -30,7 +30,7 @@ class ModifierView(AbstractView):
         
         reponse = prompt(self.__questions)
 
-        if reponse['choice'] == 'retour menu':
+        if reponse['choice'] == 'Retour menu':
             from views.menu_view import MenuView
             return MenuView()
         
@@ -39,8 +39,9 @@ class ModifierView(AbstractView):
                 'name': 'input',
                 'message': 'Entrer la nouvelle donnée :'
             }]
-        res = prompt(modifier)
 
+        res = prompt(modifier)
+        
         if reponse['choice'] == 'Modifier civilite':
             Session().profil.modifier_civilite(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
@@ -61,7 +62,7 @@ class ModifierView(AbstractView):
         
         elif reponse['choice'] == 'Modifier mot de passe':
             Session().profil.modifier_mdp(res['input'])
-            ProfilDAO().modifier_mot_de_passe(Session().profil)          
+            ProfilDAO().modifier_mot_de_passe(Session().profil)
             from views.menu_view import MenuView
             return MenuView()
         

@@ -16,20 +16,18 @@ class RechercheDAO(metaclass=Singleton):
                     , "date" : trajet.date_depart
                     , "heure" : trajet.heure_depart
                     , "ville_de_depart" : trajet.ville_depart})
-        
 
-
-    def delete(recherche ) : 
+    def delete(recherche) : 
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("DELETE FROM recherche WHERE id = %(id)s and email = %(email)s "\
                     , {"id" : trajet.id
                     , "email" : profil._email})
 
-    def save(profil: Profil, trajet ) :
+    def save(profil: Profil, trajet) :
         self.create(profil, trajet)
 
-    def find_by_id(trajet : Trajet ):
+    def find_by_id(trajet : Trajet):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("SELECT * FROM recherche JOIN trajet ON trajet.id = recherche.id "\
@@ -48,7 +46,7 @@ class RechercheDAO(metaclass=Singleton):
                     , "heure" : recherche.heure
                     ,"ville_de_depart" : recherche.depart})
 
-    def creer_alerte(recherche ,choix : str):
+    def creer_alerte(recherche, choix : str):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET choix_alerte = %(choix)s"\
