@@ -9,7 +9,7 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'civilite',
-                'message': 'Quel est votre sexe ? Saisir au format H ou M',
+                'message': 'Quel est votre sexe ? Saisir au format H ou F',
             },
             {
                 'type': 'input',
@@ -54,8 +54,9 @@ class InscriptionView(AbstractView):
         else:
             Session().profil = Profil(reponses['civilite'],  reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , reponses['mdp'])
             ProfilDAO().create_profil(Session().profil)
-            from views.menu_view import MenuView
-            return MenuView()
+            print('Le compte est creer avec succes')
+            from views.start_view import StartView
+            return StartView()
         
         
         

@@ -24,7 +24,7 @@ class Trajetclient :
         
 if __name__=='__main__' :
     trajet=Trajetclient()
-    resultat=trajet.get_trajets('2022','11','02',"NANTES","LE+MANS")
+    resultat=trajet.get_trajets('2022', '11', '02', 'NANTES', 'LE+MANS')
     for tj in resultat :
         print(tj.__str__())
 
