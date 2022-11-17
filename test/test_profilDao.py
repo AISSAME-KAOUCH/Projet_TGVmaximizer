@@ -24,13 +24,12 @@ class TestProfilDAO(TestCase):
 
     def test_modifier_profil(self):
         profil_dao = ProfilDAO()
-        profil_modifie = Profil("M", "Jean", "Dupont", "02-03-2002", "jean.dupont@gmail.com", "super_mdp")
+        profil_modifie = Profil("Mme", "Jeanne", "Duponte", "02-03-2002", "jean.dupont@gmail.com", "super_mdp")
         updated = profil_dao.modifier_profil(profil_modifie)
         self.assertTrue(updated)
 
 
-
-if __name__ == "__main__":
-    unittest.main()
+    if __name__ == "__main__":
+        unittest.main()
 
     

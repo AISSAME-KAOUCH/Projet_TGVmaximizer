@@ -40,22 +40,16 @@ class TestProfil(TestCase):
         profil.modifier_email(nv_email)
         self.assertEqual(nv_email, profil.email)
 
-    def test_modifier_profil(self):
-        profil = Profil("M", "Jean", "Dupont", "02-03-1980", "jean.dupont@gmail.com", "super_mdp")
-        nv_nom = "Durant"
-        profil.modifier_profil()
-        self.assertEqual(nv_nom, profil._nom)
+    # def test_modifier_profil(self):
+    #     profil = Profil("M", "Jean", "Dupont", "02-03-1980", "jean.dupont@gmail.com", "super_mdp")
+    #     nv_nom = "Durant"
+    #     profil.modifier_profil()
+    #     self.assertEqual(nv_nom, profil._nom)
 
     def test_type_abonnement(self):
         profil = Profil("M", "Jean", "Dupont", "02-03-2000", "jean.dupont@gmail.com", "super_mdp")
         self.assertEqual(profil.type_abonnement(), "jeune")
-
-    # def test_str(self): 
-    #     profil = Profil("Dupont", "Jean", "02-03-1980", "M", "jean.dupont@gmail.com", "super_mdp")
-    #     res = 'Profil de M. Dupont Jean :\n Email: jean.dupont@gmail.com \n Date de naissance : 02-03-1980 ?'
-    #     self.assertEqual(profil.__str__(), res)
-    # Problème avec l'affichage du test 
-
     
 if __name__ == "__main__":
     unittest.main()
+    
