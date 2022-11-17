@@ -20,7 +20,7 @@ class   ConnexionView(AbstractView):
     def make_choice(self):
         
         reponses = prompt(self.__questions)
-        mdp = sha512(getpass.getpass('Quel est votre mot de passe ?').encode()).hexdigest()
+        mdp = sha512(getpass.getpass('? Quel est votre mot de passe ?').encode()).hexdigest()
 
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
