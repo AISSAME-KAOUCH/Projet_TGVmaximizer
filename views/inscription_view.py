@@ -2,7 +2,7 @@ from PyInquirer import prompt
 from views.abstract_view import AbstractView
 from views.session import Session
 from business_object.profil import Profil
-from hashlib import sha512
+from hashlib import sha256
 import getpass
 
 class InscriptionView(AbstractView):
@@ -46,8 +46,9 @@ class InscriptionView(AbstractView):
     def make_choice(self):
 
         reponses = prompt(self.__questions)
-        mdp = sha512(getpass.getpass('? Quel est votre mot de passe ?').encode()).hexdigest()
-
+        salt = reponses['email']
+        mdp = sha256(getpass.getpass('? Quel est votre mot de passe ?').encode() + salt.encode()).hexdigest()
+        
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
@@ -55,9 +56,9 @@ class InscriptionView(AbstractView):
             from views.start_view import StartView
             return StartView()
         else:
-            mdp = mdp.encode()
-            mdp_sign = sha512(mdp).hexdigest()
-            Session().profil = Profil(reponses['civilite'], reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , mdp_sign)
+            #mdp = mdp.encode()
+            #mdp_sign = sha256(mdp + salt.encode()).hexdigest()
+            Session().profil = Profil(reponses['civilite'], reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , mdp)
             ProfilDAO().create_profil(Session().profil)
             print('Le compte est cree avec succes')
             from views.start_view import StartView
