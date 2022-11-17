@@ -2,6 +2,8 @@ from PyInquirer import prompt
 from views.abstract_view import AbstractView
 from views.session import Session
 from business_object.profil import Profil
+from hashlib import sha512
+import getpass
 
 class InscriptionView(AbstractView):
     def __init__(self) -> None:
@@ -31,11 +33,11 @@ class InscriptionView(AbstractView):
                 'name': 'email',
                 'message': 'Quel est votre email ?',
             },
-            {
-                'type': 'input',
-                'name': 'mdp',
-                'message': 'Choisir un mot de passe :',
-            },
+        #     {
+        #         'type': 'input',
+        #         'name': 'mdp',
+        #         'message': sha512(getpass.getpass('Quel est votre mot de passe ?').encode()).hexdigest(),
+        #     },
         ]
 
     def display_info(self):
@@ -44,6 +46,7 @@ class InscriptionView(AbstractView):
     def make_choice(self):
 
         reponses = prompt(self.__questions)
+        mdp = sha512(getpass.getpass('? Quel est votre mot de passe ?').encode()).hexdigest()
 
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
@@ -52,9 +55,11 @@ class InscriptionView(AbstractView):
             from views.start_view import StartView
             return StartView()
         else:
-            Session().profil = Profil(reponses['civilite'],  reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , reponses['mdp'])
+            mdp = mdp.encode()
+            mdp_sign = sha512(mdp).hexdigest()
+            Session().profil = Profil(reponses['civilite'], reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , mdp_sign)
             ProfilDAO().create_profil(Session().profil)
-            print('Le compte est creer avec succes')
+            print('Le compte est cree avec succes')
             from views.start_view import StartView
             return StartView()
         

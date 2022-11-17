@@ -1,6 +1,8 @@
 from PyInquirer import  prompt
 from views.abstract_view import AbstractView
 from views.session import Session
+from hashlib import sha512
+import getpass
 
 class   ConnexionView(AbstractView):
     def __init__(self) -> None:
@@ -9,11 +11,7 @@ class   ConnexionView(AbstractView):
                 'type': 'input',
                 'name': 'email',
                 'message': 'Quel est votre identifiant ? (email)'
-            },{
-                'type': 'input',
-                'name': 'mdp',
-                'message': 'Quel est votre mot de passe ? '
-            }
+            },
         ]
 
     def display_info(self):
@@ -22,11 +20,12 @@ class   ConnexionView(AbstractView):
     def make_choice(self):
         
         reponses = prompt(self.__questions)
+        mdp = sha512(getpass.getpass('Quel est votre mot de passe ?').encode()).hexdigest()
 
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
         if profil:
-            if profil._mot_de_passe == reponses['mdp']:
+            if profil._mot_de_passe == mdp:
                 Session().profil = profil
                 from views.menu_view import MenuView
                 return MenuView()
