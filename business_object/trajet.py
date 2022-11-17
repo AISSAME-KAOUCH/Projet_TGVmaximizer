@@ -4,27 +4,32 @@ class Trajet :
 
     "Trajet contenant les informations du voyage en train."
 
-    def __init__(self, id , ville_depart, date_depart, heure_depart,
-                ville_arrivee, heure_arrivee, numero_train,disponibilite_max):
+    def __init__(self, ville_depart, date_depart, heure_depart = None,
+                ville_arrivee = None, heure_arrivee = None, numero_train = None,
+                disponibilite_max = None, id = 0):
 
         """ Constructeur permettant l'instanciation d'un objet Trajet.
 
         Parameters
         ----------
-        id : str
-            identifiant du trajet
+        id : int
+            identifiant du trajet (0 par défaut)
         ville_depart : str
             ville de laquelle part le train correspondant au trajet
         date_depart : str
-            date (JJ-MM-YYYY) à laquelle part le train correspondant au trajet
+            date (JJ-MM-YYYY) à laquelle part le train correspondant au trajet (None par défaut)
         heure_depart : str
-            heure à laquelle part le train correspondant au trajet
+            heure à laquelle part le train correspondant au trajet (None par défaut)
         ville_arrivee : str
-            ville dans laquelle arrive le train correspondant au trajet
+            ville dans laquelle arrive le train correspondant au trajet (None par défaut)
         heure_arrivee : str
-            heure à laquelle arrive le train correspondant au trajet
+            heure à laquelle arrive le train correspondant au trajet (None par défaut)
         numero_train : str
-            numero du train correspondant au trajet
+            numero du train correspondant au trajet (None par défaut)
+
+        Returns 
+        -------
+        None
         """
 
         self.id = id

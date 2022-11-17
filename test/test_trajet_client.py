@@ -9,8 +9,8 @@ class TestTrajetClient(TestCase):
     def test_get_trajets(self):
         test = Trajetclient()
         annee = "2022"
-        mois = "10"
-        jour = "30"
+        mois = "11"
+        jour = "25"
         ville_d = "NANTES"
         ville_arrivee = "LE+MANS"
         trajets = test.get_trajets(annee, mois, jour, ville_d, ville_arrivee)
