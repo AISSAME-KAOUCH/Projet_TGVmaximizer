@@ -1,7 +1,7 @@
 from PyInquirer import  prompt
 from views.abstract_view import AbstractView
 from views.session import Session
-
+from business_object.trajet import Trajet
 class AllerSimpleView(AbstractView):
     def __init__(self) -> None:
         self.__questions = [
@@ -44,8 +44,14 @@ class AllerSimpleView(AbstractView):
         reponses = prompt(self.__questions)
         
         from DAO.trajetDAO import TrajetDAO
-        Session().trajet = Trajet(id, (reponses['ville_depart'].replace(' ', '+')).upper(),  reponses['date_depart'], reponses['heure_depart'], (reponses['ville_arrivee'].replace(' ', '+')).upper(), reponses['date_arrivee'] , reponses['heure_arrivee'])
-        TrajetDAO().insert_trajets(Session().trajet)
+        from client.trajet_client import Trajetclient
+        from business_object.recherches.recherche_aller import Recherche_aller
+        Session().trajet = Trajet(id, reponses['ville_depart'],  reponses['date_depart'], reponses['heure_depart'], reponses['ville_arrivee'], reponses['date_arrivee'] , reponses['heure_arrivee'],'OUI')
+        trajet=Trajetclient()
+        Recherche_aller().recherche()
+        #trajets=trajet.get_trajets(Session().trajet)
+        #TrajetDAO().insert_trajets(trajets)
+        ##
         from views.menu_view import MenuView
         return MenuView()
         

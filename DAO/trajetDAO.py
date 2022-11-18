@@ -62,7 +62,7 @@ class TrajetDAO(metaclass=Singleton):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute( 
-                    request, {"date_depart" : date_depart,"heure_depart" : heure_depart,"ville_depart" : ville_depart,"ville_arrivee" : ville_arrivee}
+                    request, {"date_depart" : date_depart[6:10]+'-'+date_depart[3:5]+'-'+date_depart[:2],"heure_depart" : heure_depart,"ville_depart" : ville_depart,"ville_arrivee" : ville_arrivee}
                 )
                 res = cursor.fetchall()
 
