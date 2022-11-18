@@ -32,12 +32,7 @@ class InscriptionView(AbstractView):
                 'type': 'input',
                 'name': 'email',
                 'message': 'Quel est votre email ?',
-            },
-        #     {
-        #         'type': 'input',
-        #         'name': 'mdp',
-        #         'message': sha512(getpass.getpass('Quel est votre mot de passe ?').encode()).hexdigest(),
-        #     },
+            }
         ]
 
     def display_info(self):
