@@ -30,6 +30,7 @@ class Recherche_aller(AbstractRecherche):
         return resultat_req
     
     def sauvegarder(self):
+        
         return None
 
     def creer_alerte(self, choix):
