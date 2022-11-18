@@ -19,7 +19,7 @@ class MenuView(AbstractView):
         ]
 
     def display_info(self):
-        print(f'Bonjour {Session().profil._prenom}, veuillez choisir une action.')
+        print(f'Bonjour {Session().profil._civilite}. {Session().profil._prenom} {Session().profil._nom}, veuillez choisir une action.')
 
     def make_choice(self):
         

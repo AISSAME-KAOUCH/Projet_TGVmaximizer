@@ -51,6 +51,7 @@ class AllerSimpleView(AbstractView):
         Recherche_aller().recherche()
         #trajets=trajet.get_trajets(Session().trajet)
         #TrajetDAO().insert_trajets(trajets)
+        ##
         from views.menu_view import MenuView
         return MenuView()
         

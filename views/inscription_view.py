@@ -2,6 +2,9 @@ from PyInquirer import prompt
 from views.abstract_view import AbstractView
 from views.session import Session
 from business_object.profil import Profil
+from hashlib import sha256
+import getpass
+import re
 
 class InscriptionView(AbstractView):
     def __init__(self) -> None:
@@ -9,7 +12,7 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'civilite',
-                'message': 'Quel est votre sexe ? Saisir au format H ou M',
+                'message': 'Quel est votre sexe ? Saisir au format M ou MME',
             },
             {
                 'type': 'input',
@@ -30,12 +33,7 @@ class InscriptionView(AbstractView):
                 'type': 'input',
                 'name': 'email',
                 'message': 'Quel est votre email ?',
-            },
-            {
-                'type': 'input',
-                'name': 'mdp',
-                'message': 'Choisir un mot de passe :',
-            },
+            }
         ]
 
     def display_info(self):
@@ -44,18 +42,25 @@ class InscriptionView(AbstractView):
     def make_choice(self):
 
         reponses = prompt(self.__questions)
-
-        from DAO.profilDAO import ProfilDAO
-        profil = ProfilDAO().find_by_id(reponses['email'])
-        if profil:
-            print('L\'addresse email est deja prise')
-            from views.start_view import StartView
-            return StartView()
+        salt = reponses['email']
+        mdp = sha256(getpass.getpass('? Quel est votre mot de passe ?').encode() + salt.encode()).hexdigest()
+        
+        regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+        if(re.fullmatch(regex, reponses['email'])) :
+            from DAO.profilDAO import ProfilDAO
+            profil = ProfilDAO().find_by_id(reponses['email'])
+            if profil:
+                print('L\'addresse email est deja prise')
+                from views.start_view import StartView
+                return StartView()
+            else:
+                Session().profil = Profil(reponses['civilite'], reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , mdp)
+                ProfilDAO().create_profil(Session().profil)
+                print('Le compte est cree avec succes')
+                from views.start_view import StartView
+                return StartView()
         else:
-            Session().profil = Profil(reponses['civilite'],  reponses['prenom'], reponses['nom'], reponses['date_naissance'], reponses['email'] , reponses['mdp'])
-            ProfilDAO().create_profil(Session().profil)
-            from views.menu_view import MenuView
-            return MenuView()
+            print("Adresse mail incorrecte")
         
         
         

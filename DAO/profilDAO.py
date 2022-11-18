@@ -46,7 +46,7 @@ class ProfilDAO(metaclass=Singleton):
                             mot_de_passe = res['mot_de_passe'])
         return profil
 
-    def modifier_mot_de_passe(self, profil_modifie : Profil):
+    def modifier_mot_de_passe(self, profil_modifie: Profil):
 
         """Fonction qui permet de modifier le mot de passe dans la base de données.
         
@@ -75,7 +75,7 @@ class ProfilDAO(metaclass=Singleton):
                     updated = True
         return updated
 
-    def modifier_profil(self, profil_modifie):
+    def modifier_profil(self, profil_modifie: Profil):
 
         """Fonction qui permet de modifier le profil dans la base de données.
         

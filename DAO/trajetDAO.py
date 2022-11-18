@@ -9,6 +9,18 @@ class TrajetDAO(metaclass=Singleton):
     Elle permet de récupérer des trajets depuis notre base de données mais aussi d'en ajouter. 
     """
     def find_max_id(self):
+
+        """Fonction qui permet de récupérer, dans notre base de données (table trajets), le dernier 
+        id utilisé pour créer l'id du trajet suivant. 
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        int : dernier id créé
+        """
+
         request = "SELECT max(id) as maximum FROM trajet " 
                   
         with DBConnection().connection as connection:
@@ -69,6 +81,7 @@ class TrajetDAO(metaclass=Singleton):
                 tjs+=[trajet]
                 
         return tjs 
+        
     def insert_trajets(self,trajets):
         
         """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir

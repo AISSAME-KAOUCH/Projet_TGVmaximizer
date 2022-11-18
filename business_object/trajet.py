@@ -11,20 +11,24 @@ class Trajet :
 
         Parameters
         ----------
-        id : str
-            identifiant du trajet
+        id : int
+            identifiant du trajet (0 par défaut)
         ville_depart : str
             ville de laquelle part le train correspondant au trajet
         date_depart : str
-            date (JJ-MM-YYYY) à laquelle part le train correspondant au trajet
+            date (JJ-MM-YYYY) à laquelle part le train correspondant au trajet (None par défaut)
         heure_depart : str
-            heure à laquelle part le train correspondant au trajet
+            heure à laquelle part le train correspondant au trajet (None par défaut)
         ville_arrivee : str
-            ville dans laquelle arrive le train correspondant au trajet
+            ville dans laquelle arrive le train correspondant au trajet (None par défaut)
         heure_arrivee : str
-            heure à laquelle arrive le train correspondant au trajet
+            heure à laquelle arrive le train correspondant au trajet (None par défaut)
         numero_train : str
-            numero du train correspondant au trajet
+            numero du train correspondant au trajet (None par défaut)
+
+        Returns 
+        -------
+        None
         """
 
         self.id = id

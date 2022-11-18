@@ -88,20 +88,6 @@ class Profil :
         """
         self._date_de_naissance = date
     
-    def modifier_email(self, mail):
-        """ Fonction permettant de modifier l'adresse mail de l'utilisateur
-
-        Parameters
-        ----------
-        mail : str
-            nouvelle adresse mail
-
-        Returns
-        -------
-            None
-        """
-        self.email = mail
-    
     def modifier_mdp(self, new_pass):
         """ Fonction permettant de modifier le mot de passe de l'utilisateur
 
@@ -135,15 +121,13 @@ class Profil :
             '2. Modifier le prenom \n'
             '3. Modifier le nom \n'
             '4. Modifier la date de naissance \n'
-            '5. Modifier l\'adresse mail \n'
-            '6. Modifier le mot de passe \n'
+            '5. Modifier le mot de passe \n'
             'Taper le numéro correspondant :'))
             actions = {1:self.modifier_civilite,
                        2:self.modifier_prenom,
                        3:self.modifier_nom,
                        4:self.modifier_date_de_naissance,
-                       5:self.modifier_email,
-                       6:self.modifier_mdp}
+                       5:self.modifier_mdp}
             action = actions.get(choix)
             action(input("entrer la nouvelle valeur :"))
         

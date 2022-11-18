@@ -44,10 +44,7 @@ class AllerRetourView(AbstractView):
         reponses = prompt(self.__questions)
         
         from DAO.trajetDAO import TrajetDAO
-        Session().trajet = Trajet(id, reponses['ville_depart'],  reponses['date_depart'], reponses['heure_depart'], reponses['ville_arrivee'], reponses['date_arrivee'] , reponses['heure_arrivee'])
-        
-        
-        
+        Session().trajet = Trajet(id, (reponses['ville_depart'].replace(' ', '+')).upper(),  reponses['date_depart'], reponses['heure_depart'], (reponses['ville_arrivee'].replace(' ', '+')).upper(), reponses['date_arrivee'] , reponses['heure_arrivee'])       
         TrajetDAO().insert_trajets(Session().trajet)
         from views.menu_view import MenuView
         return MenuView()
