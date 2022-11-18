@@ -45,7 +45,6 @@ class ModifierView(AbstractView):
                 'name': 'input',
                 'message': 'Entrer la nouvelle donnée (format M ou MME) :'
             }]
-       
         
         if reponse['choice'] == 'Modifier civilite':
             res = prompt(modifier_civ)
