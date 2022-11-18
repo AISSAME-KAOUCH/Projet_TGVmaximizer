@@ -30,7 +30,7 @@ CREATE TABLE recherche (
     ville_arrivee TEXT, 
     numero_train INT, 
     heure_arrivee TIME, 
-    disponibilite_max TEXT
+    disponibilite_max TEXT,
     CONSTRAINT pk_recherche PRIMARY KEY(id, email)
     );
 
