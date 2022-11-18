@@ -40,31 +40,36 @@ class ModifierView(AbstractView):
                 'message': 'Entrer la nouvelle donnée :'
             }]
 
-        res = prompt(modifier)
+        modifier_civ = [{
+                'type': 'input',
+                'name': 'input',
+                'message': 'Entrer la nouvelle donnée (format M ou MME) :'
+            }]
+       
         
         if reponse['choice'] == 'Modifier civilite':
-            if reponse['input'] == "H" : 
-                reponse['input'] = "M"
-            else : 
-                reponse['input'] = "Mme"
+            res = prompt(modifier_civ)
             Session().profil.modifier_civilite(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
             from views.menu_view import MenuView
             return MenuView()
 
         elif reponse['choice'] == 'Modifier prenom':
+            res = prompt(modifier)
             Session().profil.modifier_prenom(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
             from views.menu_view import MenuView
             return MenuView()
 
         elif reponse['choice'] == 'Modifier nom':
+            res = prompt(modifier)
             Session().profil.modifier_nom(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
             from views.menu_view import MenuView
             return MenuView()
         
         elif reponse['choice'] == 'Modifier mot de passe':
+            res = prompt(modifier)
             Session().profil.modifier_mdp(res['input'])
             ProfilDAO().modifier_mot_de_passe(Session().profil)
             from views.menu_view import MenuView

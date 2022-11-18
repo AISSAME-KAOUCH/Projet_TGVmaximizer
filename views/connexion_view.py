@@ -21,7 +21,7 @@ class   ConnexionView(AbstractView):
         
         reponses = prompt(self.__questions)
         salt = reponses['email']
-        mdp = sha256(getpass.getpass('Quel est votre mot de passe ?').encode() + salt.encode()).hexdigest()
+        mdp = sha256(getpass.getpass('? Quel est votre mot de passe ?').encode() + salt.encode()).hexdigest()
 
         from DAO.profilDAO import ProfilDAO
         profil = ProfilDAO().find_by_id(reponses['email'])
