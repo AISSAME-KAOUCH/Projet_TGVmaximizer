@@ -25,6 +25,13 @@ CREATE TABLE trajet (
 CREATE TABLE recherche (
     id INT REFERENCES trajet(id),
     email TEXT REFERENCES profil(email),
+    heure_depart TIME, 
+    ville_depart TEXT, 
+    ville_arrivee TEXT, 
+    numero_train INT, 
+    heure_arrivee TIME, 
+    disponibilite_max TEXT,
+    alerte BOOLEAN, 
     CONSTRAINT pk_recherche PRIMARY KEY(id, email)
     );
 
