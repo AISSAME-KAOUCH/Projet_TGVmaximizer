@@ -43,10 +43,10 @@ class ModifierView(AbstractView):
         res = prompt(modifier)
         
         if reponse['choice'] == 'Modifier civilite':
-            if reponses['input'] == "H" : 
-                reponses['input'] = "M"
+            if reponse['input'] == "H" : 
+                reponse['input'] = "M"
             else : 
-                reponses['input'] = "Mme"
+                reponse['input'] = "Mme"
             Session().profil.modifier_civilite(res['input'])
             ProfilDAO().modifier_profil(Session().profil)
             from views.menu_view import MenuView
