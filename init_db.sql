@@ -31,6 +31,7 @@ CREATE TABLE recherche (
     numero_train INT, 
     heure_arrivee TIME, 
     disponibilite_max TEXT,
+    alerte BOOLEAN, 
     CONSTRAINT pk_recherche PRIMARY KEY(id, email)
     );
 
