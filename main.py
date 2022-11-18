@@ -2,8 +2,11 @@ from views.start_view import StartView
 from client.trajet_client import Trajetclient
 from business_object.trajet import Trajet
 from DAO.trajetDAO import TrajetDAO
-
+from business_object.recherches.recherche_aller import Recherche_aller
+from business_object.profil import Profil
 if __name__ == '__main__':
+
+    
     # run the StartView
     current_view = StartView()
 
@@ -13,6 +16,13 @@ if __name__ == '__main__':
         current_view.display_info()
         current_view = current_view.make_choice()
 
+    '''
+    profil=Profil('H', 'ali', 'ali', '15/10/2000', 'ali@gmail.com', '0000')
+    trajet=Trajet(0,'RENNES','02-12-2022','11:51:00','LAVAL','12:48',5280,'OUI')
+    res=Recherche_aller(profil,trajet).recherche()
+    for trj in res :
+        print(trj.__str__())
+    '''
 #PAS DE TEST DANS LE MAIN
 """
 if __name__=='__main__' :
