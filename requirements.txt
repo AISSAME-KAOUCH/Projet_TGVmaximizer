@@ -6,3 +6,4 @@ python-dotenv
 fastapi
 PyInquirer
 datetime
+re
