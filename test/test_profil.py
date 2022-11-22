@@ -28,18 +28,6 @@ class TestProfil(TestCase):
         profil.modifier_civilite(nv_civilite)
         self.assertEqual(nv_civilite, profil._civilite)
 
-    def test_modifier_date_de_naissance(self):
-        profil = Profil("M", "Jean", "Dupont", "02-03-1980", "jean.dupont@gmail.com", "super_mdp")
-        nv_date = "04-07-1987"
-        profil.modifier_date_de_naissance(nv_date)
-        self.assertEqual(nv_date, profil._date_de_naissance)
-
-    def test_email(self):
-        profil = Profil("M", "Jean", "Dupont", "02-03-1980", "jean.dupont@gmail.com", "super_mdp")
-        nv_email = "email.update@gmail.com"
-        profil.modifier_email(nv_email)
-        self.assertEqual(nv_email, profil.email)
-
     # def test_modifier_profil(self):
     #     profil = Profil("M", "Jean", "Dupont", "02-03-1980", "jean.dupont@gmail.com", "super_mdp")
     #     nv_nom = "Durant"

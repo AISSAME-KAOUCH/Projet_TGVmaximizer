@@ -74,20 +74,6 @@ class Profil :
         """
         self._nom = nom
     
-    def modifier_date_de_naissance(self, date):
-        """ Fonction permettant de modifier la date de naissance de l'utilisateur
-
-        Parameters
-        ----------
-        date : str
-            nouvelle date de naissance
-
-        Returns
-        -------
-            None
-        """
-        self._date_de_naissance = date
-    
     def modifier_mdp(self, new_pass):
         """ Fonction permettant de modifier le mot de passe de l'utilisateur
 
@@ -120,14 +106,12 @@ class Profil :
             '1. Modifier la civilité \n'
             '2. Modifier le prenom \n'
             '3. Modifier le nom \n'
-            '4. Modifier la date de naissance \n'
-            '5. Modifier le mot de passe \n'
+            '4. Modifier le mot de passe \n'
             'Taper le numéro correspondant :'))
             actions = {1:self.modifier_civilite,
                        2:self.modifier_prenom,
                        3:self.modifier_nom,
-                       4:self.modifier_date_de_naissance,
-                       5:self.modifier_mdp}
+                       4:self.modifier_mdp}
             action = actions.get(choix)
             action(input("entrer la nouvelle valeur :"))
         
