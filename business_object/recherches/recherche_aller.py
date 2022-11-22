@@ -26,6 +26,8 @@ class Recherche_aller(AbstractRecherche):
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
         trajets = trajetclient.get_trajets(annee, mois, jour, self.trajet.ville_depart, self.trajet.ville_arrivee,id_initial)
         trajetdao.insert_trajets(trajets)
+        for j in trajets :
+            RechercheDAO().create(self.profil,j)
         resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
         return resultat_req
     
