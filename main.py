@@ -4,12 +4,15 @@ from business_object.trajet import Trajet
 from DAO.trajetDAO import TrajetDAO
 from business_object.recherches.recherche_aller import Recherche_aller
 from business_object.profil import Profil
+from DAO.rechercheDAO import RechercheDAO 
+from business_object.recherches.recherche_30j import Recherche_30j
+from business_object.recherches.recherche_aller_retour import Recherche_aller_retour
 if __name__ == '__main__':
 
-    
+    '''
     # run the StartView
     current_view = StartView()
-
+    
     while current_view:
         
         print('-----------------')
@@ -17,12 +20,27 @@ if __name__ == '__main__':
         current_view = current_view.make_choice()
 
     '''
-    profil=Profil('H', 'ali', 'ali', '15/10/2000', 'ali@gmail.com', '0000')
-    trajet=Trajet(0,'RENNES','02-12-2022','11:51:00','LAVAL','12:48',5280,'OUI')
-    res=Recherche_aller(profil,trajet).recherche()
-    for trj in res :
-        print(trj.__str__())
-    '''
+
+    profil=Profil('H', 'ali', 'ali', '15/10/2000', 'aissame@gmail.com', '0000')
+    trajet=Trajet(1,'RENNES','02-12-2022','11:51:00','LAVAL','12:48',67,'OUI')
+    trajet2=Trajet(1,'LAVAL','10-12-2022','07:40:00','RENNES','12:48',8,'OUI')
+    #res=Recherche_aller(profil,trajet).recherche()
+    #for trj in res :
+    #    print(trj.__str__())
+    (resultat_req1,resultat_req2)=Recherche_aller_retour(profil,trajet,trajet2).recherche()
+    print(len(resultat_req1),len(resultat_req2))
+    print('\n\n\t\t--------------aller---------------\n\n')
+    for i in resultat_req1 :
+        print(i.__str__())
+    print('--------------retour---------------\n\n')
+    for j in resultat_req2 : 
+        print(j.__str__())      
+        
+
+
+    #res=Recherche_30j(profil,'RENNES','02-12-2022').recherche()
+    #for trj in res :
+    #    print(trj.__str__())  
 #PAS DE TEST DANS LE MAIN
 """
 if __name__=='__main__' :
