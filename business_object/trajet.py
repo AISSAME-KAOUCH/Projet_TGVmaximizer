@@ -51,6 +51,6 @@ class Trajet :
         -------
         str : les informations du trajet
         """
-        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} à {} sa disponibilité est {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.heure_arrivee,self.disponibilite_max)
+        return 'Trajet au départ de {} le {} à {}, arrivée prévue à {} à {}.'.format(self.ville_depart,self.date_depart,self.heure_depart,self.ville_arrivee,self.heure_arrivee)
 
 
