@@ -25,7 +25,7 @@ class Recherche_aller(AbstractRecherche):
         self.profil = profil
         self.trajet = trajet
 
-    def find_id_trajet(self,trajet : Trajet):
+    def find_id_trajet(self, trajet: Trajet):
 
         """Fonction pour trouver l'identifiant du trajet
         
@@ -64,9 +64,9 @@ class Recherche_aller(AbstractRecherche):
         for j in trajets :
             RechercheDAO().create(self.profil,j)
         if self.trajet.heure_depart=='' :
-            resultat_req =trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+            resultat_req = trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
         else :
-            resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
+            resultat_req = trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
         return resultat_req
     
     def sauvegarder(self):

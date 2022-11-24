@@ -9,8 +9,6 @@ class Recherche_aller_retour(AbstractRecherche):
 
     """Classe qui permet d'effectuer une recherche pour un aller-retour"""
 
-    
-
     def __init__(self, profil: Profil, trajet_aller: Trajet, trajet_retour: Trajet) -> None:
 
         """Constructeur la recherche d'un trajet aller-retour
