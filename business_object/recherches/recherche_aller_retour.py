@@ -7,15 +7,43 @@ from business_object.profil import Profil
 
 class Recherche_aller_retour(AbstractRecherche):
 
+    """Classe qui permet d'effectuer une recherche pour un aller-retour"""
+
+    
+
     def __init__(self, profil: Profil, trajet_aller: Trajet, trajet_retour: Trajet) -> None:
+
+        """Constructeur la recherche d'un trajet aller-retour
+        
+        Parameters
+        ----------
+        trajet_aller : Trajet
+            Le trajet d'aller
+        trajet_retour : Trajet
+            Le trajet retour
+        profil : Profil
+            Le profil qui effectue la recherche
+        """
+
         super().__init__()
         self.trajet_aller = trajet_aller
         self.trajet_retour = trajet_retour
-        self.profil = profil
+        self.profil=profil
 
     def recherche(self):
+
+        """Classe qui permet d'effectuer la recherche pour un aller-retour
+        
+        Returns
+        --------
+        resultat_req1 : Trajet
+            Le trajet aller souhaité par l'utilisateur
+        resultat_req2 : Trajet
+            Le trajet retour souhaité par l'utilisateur
+        """
+
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
-        trajetclient = Trajetclient()
+        trajetclient= Trajetclient()
         jour = self.trajet_aller.date_depart[:2] # On tire les informations
         mois = self.trajet_aller.date_depart[3:5]# dont on a besoin 
         annee = self.trajet_aller.date_depart[6:10] # de l'attribut date_depart
@@ -40,9 +68,15 @@ class Recherche_aller_retour(AbstractRecherche):
         return (resultat_req1,resultat_req2)
     
     def sauvegarder(self):
+
+        """Classe pour sauvegarder les trajets associés au profil"""
+
         rechercheDAO.sauvegarder(self.trajet, self.profil)
     
     def creer_alerte(self):
+
+        """Classe pour créer une alerte mail si un trajet correspondant aux critères est disponible"""
+
         rechercheDAO.creer_alerte(self.trajet, self.profil)
     
         
