@@ -14,12 +14,12 @@ class AllerSimpleView(AbstractView):
             {
                 'type': 'input',
                 'name': 'ville_arrivee',
-                'message': 'Quelle est la ville d\'arrivee ? (facultatif)',
+                'message': 'Quelle est la ville d\'arrivee ? (obligatoire)',
             },
             {
                 'type': 'input',
                 'name': 'date_depart',
-                'message': 'Quelle est la date de depart (Format JJ-MM-YYYY) ? (facultatif)',
+                'message': 'Quelle est la date de depart (Format JJ-MM-YYYY) ? (obligatoire)',
             },
             {
                 'type': 'input',
@@ -49,11 +49,13 @@ class AllerSimpleView(AbstractView):
         if Session().trajet.ville_arrivee in ville_intramuros :
              Session().trajet.ville_arrivee += ' (intramuros)'
         profil = Profil(Session().profil._civilite,Session().profil._prenom,Session().profil._nom,Session().profil._date_de_naissance,Session().profil.email,Session().profil._mot_de_passe)
+
         res =Recherche_aller(profil,Session().trajet).recherche()
         if len(res) == 0 : 
             print('Pas de trajet corespondant à votre recherche')
         for trj in res :
             print(trj.__str__())
+
         from views.menu_view import MenuView
         return MenuView()
         

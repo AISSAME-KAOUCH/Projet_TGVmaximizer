@@ -1,5 +1,7 @@
 from abc import ABC
 class AbstractRecherche(ABC):
+
+    """Classe abstraite pour les recherches """
     
     def __init__(self) -> None:
         super().__init__()
