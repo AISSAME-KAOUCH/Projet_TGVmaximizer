@@ -17,17 +17,17 @@ class RechercheDAO(metaclass=Singleton):
                     , "heure" : trajet.heure_depart
                     , "ville_de_depart" : trajet.ville_depart})
 
-    def delete(self,recherche) : 
+    def delete(self, recherche) : 
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("DELETE FROM recherche WHERE id = %(id)s and email = %(email)s "\
                     , {"id" : trajet.id
                     , "email" : profil._email})
 
-    def save(self,profil: Profil, trajet) :
+    def save(self, profil: Profil, trajet) :
         self.create(profil, trajet)
 
-    def find_by_id(self,trajet : Trajet):
+    def find_by_id(self, trajet : Trajet):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("SELECT * FROM recherche JOIN trajet ON trajet.id = recherche.id "\
@@ -36,7 +36,7 @@ class RechercheDAO(metaclass=Singleton):
         return cursor.fetchall()
 
     
-    def update(self,recherche):
+    def update(self, recherche):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET email = %(email)s, date = %(date)s, heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
@@ -46,7 +46,7 @@ class RechercheDAO(metaclass=Singleton):
                     , "heure" : recherche.heure
                     ,"ville_de_depart" : recherche.depart})
 
-    def creer_alerte(self,recherche, choix : str):
+    def creer_alerte(self, recherche, choix : str):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET choix_alerte = %(choix)s"\

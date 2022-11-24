@@ -7,15 +7,16 @@ HOST_WEBSERVICE="https://data.sncf.com"
 END_POINT="/api/records/1.0/search/?dataset=tgvmax&q=&rows=10000&facet=date&facet=origine&facet=destination&facet=od_happy_card"
 
 class Trajetclient :
-
-    """Classe qui permet de communiquer avec l'API SNCF et de récupérer les trajets."""
+    """
+    Classe qui permet de communiquer avec l'API SNCF et de récupérer les trajets.
+    """
 
     #def __init__(self) -> None:
     #    self.__HOST =os.environ["HOST_WEBSERVICE"]
 
     def get_trajets(self, annee, mois, jour, ville_d, ville_arrivee = None, id_initiale = None) :
-
-        """ Fonction qui permet de récupérer les trajets sur l'API SNCF correspondant aux critères
+        """ 
+        Fonction qui permet de récupérer les trajets sur l'API SNCF correspondant aux critères
         entrés en paramètres
 
         Parameters
@@ -50,8 +51,7 @@ class Trajetclient :
             j+=1
         return trajets
 
-    def get_trajets2(self, ville_depart,id_initiale) :
-
+    def get_trajets2(self, ville_depart, id_initiale) :
 
         req = requests.get(f"{HOST_WEBSERVICE}{END_POINT}&refine.origine={ville_depart}")
         dic=req.json()

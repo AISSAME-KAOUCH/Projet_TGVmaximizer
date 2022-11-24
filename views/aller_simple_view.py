@@ -9,22 +9,22 @@ class AllerSimpleView(AbstractView):
             {
                 'type': 'input',
                 'name': 'ville_depart',
-                'message': 'Quelle est la ville de depart ?',
+                'message': 'Quelle est la ville de depart ? (obligatoire)' ,
             },
             {
                 'type': 'input',
                 'name': 'ville_arrivee',
-                'message': 'Quelle est la ville d\'arrivee ?',
+                'message': 'Quelle est la ville d\'arrivee ? (facultatif)',
             },
             {
                 'type': 'input',
                 'name': 'date_depart',
-                'message': 'Quel est la date de depart (Format JJ-MM-YYYY) ? (facultatif)',
+                'message': 'Quelle est la date de depart (Format JJ-MM-YYYY) ? (facultatif)',
             },
             {
                 'type': 'input',
                 'name': 'heure_depart',
-                'message': 'Quelle est l\'heure de depart ?',
+                'message': 'Quelle est l\'heure de depart ? (facultatif)',
             },{
                 'type': 'input',
                 'name': 'heure_arrivee',

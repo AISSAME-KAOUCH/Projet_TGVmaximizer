@@ -14,7 +14,7 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'civilite',
-                'message': 'Quel est votre sexe ? Saisir au format M ou MME',
+                'message': 'Quelle est votre civilite ? Saisir au format M ou MME',
             },
             {
                 'type': 'input',
@@ -70,7 +70,9 @@ class InscriptionView(AbstractView):
                     else : 
                         print("Adresse mail incorrecte")
                 else:
-                    print("Vous n'êtes pas éligibles à TGVMax" )              
+                    print("Vous n'êtes pas éligibles à TGVMax" ) 
+                    from views.start_view import StartView
+                    return StartView()             
             else : 
                 print("Format de la date incorrect")
         else:

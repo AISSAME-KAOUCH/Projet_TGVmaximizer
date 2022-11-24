@@ -1,13 +1,14 @@
 import datetime as dt
 
 class Profil : 
-
-    """ Profil contenant les informations de l'utilisateur et donc qui le représente
-        numériquement dans l'application.
+    """ 
+    Profil contenant les informations de l'utilisateur et donc qui le représente
+    numériquement dans l'application.
     """
 
     def __init__(self, civilite, prenom, nom, date_de_naissance, email, mot_de_passe):
-        """ Constructeur permettant l'instanciation d'un objet Profil.
+        """ 
+        Constructeur permettant l'instanciation d'un objet Profil.
 
         Parameters
         ----------
@@ -33,7 +34,8 @@ class Profil :
         self._recherches = []
     
     def modifier_civilite(self, civilite):
-        """ Fonction permettant de modifier la civilité de l'utilisateur
+        """ 
+        Fonction permettant de modifier la civilité de l'utilisateur
 
         Parameters
         ----------
@@ -47,7 +49,8 @@ class Profil :
         self._civilite = civilite
 
     def modifier_prenom(self, prenom):
-        """ Fonction permettant de modifier le prénom de l'utilisateur
+        """ 
+        Fonction permettant de modifier le prénom de l'utilisateur
 
         Parameters
         ----------
@@ -61,7 +64,8 @@ class Profil :
         self._prenom = prenom
 
     def modifier_nom(self, nom):
-        """ Fonction permettant de modifier le nom de l'utilisateur
+        """ 
+        Fonction permettant de modifier le nom de l'utilisateur
 
         Parameters
         ----------
@@ -75,7 +79,8 @@ class Profil :
         self._nom = nom
     
     def modifier_mdp(self, new_pass):
-        """ Fonction permettant de modifier le mot de passe de l'utilisateur
+        """ 
+        Fonction permettant de modifier le mot de passe de l'utilisateur
 
         Parameters
         ----------
@@ -90,7 +95,8 @@ class Profil :
     
 
     def modifier_profil(self):
-        """ Fonction permettant de modifier un ou plusieurs élément du profil de l'utilisateur.
+        """ 
+        Fonction permettant de modifier un ou plusieurs élément du profil de l'utilisateur.
         Cette fonction fait appel aux precédentes fonctions de modification.
 
         Parameters
@@ -117,7 +123,8 @@ class Profil :
         
 
     def type_abonnement(self):
-        """ Fonction permettant d'identifier le type d'abonnement de l'utilisateur à partir
+        """ 
+        Fonction permettant d'identifier le type d'abonnement de l'utilisateur à partir
         de sa date de naissance.
 
         Parameters

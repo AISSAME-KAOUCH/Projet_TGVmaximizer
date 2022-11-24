@@ -4,9 +4,10 @@ from DAO.trajetDAO import TrajetDAO
 from business_object.trajet import Trajet
 from client.trajet_client import Trajetclient
 from business_object.profil import Profil
+
 class Recherche_aller_retour(AbstractRecherche):
 
-    def __init__(self, profil: Profil, trajet_aller : Trajet,trajet_retour : Trajet) -> None:
+    def __init__(self, profil: Profil, trajet_aller: Trajet, trajet_retour: Trajet) -> None:
         super().__init__()
         self.trajet_aller = trajet_aller
         self.trajet_retour = trajet_retour
@@ -41,9 +42,8 @@ class Recherche_aller_retour(AbstractRecherche):
     def sauvegarder(self):
         rechercheDAO.sauvegarder(self.trajet, self.profil)
     
-    def creer_alerte(self, choix):
-        if choix == "oui":
-            rechercheDAO.creer_alerte(self.trajet, self.profil)
+    def creer_alerte(self):
+        rechercheDAO.creer_alerte(self.trajet, self.profil)
     
         
 
