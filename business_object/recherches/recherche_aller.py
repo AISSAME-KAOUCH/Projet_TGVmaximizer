@@ -28,7 +28,10 @@ class Recherche_aller(AbstractRecherche):
         trajetdao.insert_trajets(trajets)
         for j in trajets :
             RechercheDAO().create(self.profil,j)
-        resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+        if self.trajet.heure_depart=='' :
+            resultat_req =trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+        else :
+            resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
         return resultat_req
     
     def sauvegarder(self):
