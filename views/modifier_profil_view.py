@@ -68,8 +68,9 @@ class ModifierView(AbstractView):
             return MenuView()
         
         elif reponse['choice'] == 'Modifier mot de passe':
-            res = prompt(modifier)
-            Session().profil.modifier_mdp(res['input'])
+            #res = prompt(modifier)
+            mdp = sha256(getpass.getpass(' Entrez le nouveau mot de passe : ').encode() + salt.encode()).hexdigest()
+            Session().profil.modifier_mdp(mdp)
             ProfilDAO().modifier_mot_de_passe(Session().profil)
             from views.menu_view import MenuView
             return MenuView()

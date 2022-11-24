@@ -15,7 +15,7 @@ class   ConnexionView(AbstractView):
         ]
 
     def display_info(self):
-        print("Veuillez entrer les informations requisent a la connexion.")
+        print("Veuillez entrer les informations requises a la connexion.")
 
     def make_choice(self):
         
