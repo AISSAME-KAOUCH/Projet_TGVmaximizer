@@ -48,10 +48,15 @@ class ModifierView(AbstractView):
         
         if reponse['choice'] == 'Modifier civilite':
             res = prompt(modifier_civ)
-            Session().profil.modifier_civilite(res['input'])
-            ProfilDAO().modifier_profil(Session().profil)
-            from views.menu_view import MenuView
-            return MenuView()
+            if res['input'] == "M" or res['input'] == "MME" : 
+                Session().profil.modifier_civilite(res['input'])
+                ProfilDAO().modifier_profil(Session().profil)
+                from views.menu_view import MenuView
+                return MenuView()
+            else:
+                print("Format de la civilité incorrect")
+                from views.modifier_profil_view import ModifierView
+                return ModifierView()
 
         elif reponse['choice'] == 'Modifier prenom':
             res = prompt(modifier)
