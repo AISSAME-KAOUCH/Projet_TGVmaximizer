@@ -12,29 +12,29 @@ class Recherche_aller(AbstractRecherche):
         self.profil = profil
         self.trajet = trajet
 
-    def find_id_trajet(self,trajet : Trajet):
+    def find_id_trajet(self, trajet: Trajet):
         trajetdao = TrajetDAO()
         id = trajetdao.find_id(trajet)
         return id
 
     def recherche(self):
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
-        trajetclient= Trajetclient()
+        trajetclient = Trajetclient()
         jour = self.trajet.date_depart[:2] # On tire les informations
-        mois = self.trajet.date_depart[3:5]# dont on a besoin 
+        mois = self.trajet.date_depart[3:5] # dont on a besoin 
         annee = self.trajet.date_depart[6:10] # de l'attribut date_depart
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
         trajets = trajetclient.get_trajets(annee, mois, jour, self.trajet.ville_depart, self.trajet.ville_arrivee,id_initial)
         trajetdao.insert_trajets(trajets)
         for j in trajets :
             RechercheDAO().create(self.profil,j)
-        resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+        resultat_req = trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
         return resultat_req
     
     def sauvegarder(self):
         return None
 
-    def creer_alerte(self, choix):
+    def creer_alerte(self):
         rechercheDAO.creer_alerte(self.trajet, self.profil)
 
     
