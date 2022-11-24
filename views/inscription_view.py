@@ -14,7 +14,7 @@ class InscriptionView(AbstractView):
             {
                 'type': 'input',
                 'name': 'civilite',
-                'message': 'Quel est votre sexe ? Saisir au format M ou MME',
+                'message': 'Quelle est votre civilite ? Saisir au format M ou MME',
             },
             {
                 'type': 'input',
