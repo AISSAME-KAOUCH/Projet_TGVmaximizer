@@ -14,17 +14,17 @@ class AllerRetourView(AbstractView):
             {
                 'type': 'input',
                 'name': 'ville_arrivee',
-                'message': 'Quelle est la ville d\'arrivee ? (facultatif)',
+                'message': 'Quelle est la ville d\'arrivee ? (obligatoire)',
             },
             {
                 'type': 'input',
                 'name': 'date_depart',
-                'message': 'Quelle est la date de depart ? (facultatif)',
+                'message': 'Quelle est la date de depart ? (obligatoire)',
             },
             {
                 'type': 'input',
                 'name': 'date_arrivee',
-                'message': 'Quelle est la date d\'arrivee pour le retour? (facultatif)',
+                'message': 'Quelle est la date de départ pour le retour? (obligatoire)',
             },
             {
                 'type': 'input',
@@ -76,7 +76,7 @@ class AllerRetourView(AbstractView):
         for trj in res1 :
             print(trj.__str__())
         for trj in res2: 
-            print(trj.__str())
+            print(trj.__str__())
         
         
         from views.menu_view import MenuView

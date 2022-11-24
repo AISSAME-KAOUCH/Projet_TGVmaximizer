@@ -5,75 +5,57 @@ from business_object.trajet import Trajet
 from client.trajet_client import Trajetclient
 from business_object.profil import Profil
 
-class Recherche_aller(AbstractRecherche):
+class Recherche_disponibilite(AbstractRecherche):
 
-    """ Classe pour effectuer une recherche aller seule"""
+    """Classe qui permet de rechercher dans la base de données les trajets demandés"""
 
-    def __init__(self, profil: Profil, trajet: Trajet) -> None:
+    def __init__(self, profil, ville_depart, date):
 
-        """Constructeur pour la recherche aller simple*
-        
+        """Constructeur permettant l'instanciation d'une recherche pour un profil renseigné
+
         Parameters
-        ----------
-        profil : Profil
-            Le profil qui effectue la recherche
-        trajet : Trajet
-            Le trajet correspondant à la recherche
+        ---------- 
+        profil : Profil 
+            Un objet profil et ses attributs
+        ville_depart : str
+            La ville dont l'utilisateur souhaite rechercher son trajet 
+        date : str
+            La date à laquelle l'utilisateur souhaite rechercher son trajet
         """
 
         super().__init__()
         self.profil = profil
-        self.trajet = trajet
-
-    def find_id_trajet(self, trajet: Trajet):
-
-        """Fonction pour trouver l'identifiant du trajet
-        
-        Parameters
-        ----------
-        trajet : Trajet
-            Le trajet correspondant à la recherche
-
-        Returns
-        ----------
-        id : str
-            L'identifiant correspodant au trajet
-        """
-        trajetdao = TrajetDAO()
-        id = trajetdao.find_id(trajet)
-        return id
+        self.ville_depart = ville_depart
+        self.date=date
 
     def recherche(self):
 
-        """Classe pour effectuer la recherche aller simple
-        
-        Returns
-        --------
-        resultat_req : Trajet
-            Le(s) trajet(s) correspondant aux critères de recherche
-        """
+        """Classe qui permet de rechercher les trajets parmi ceux disponibles sur la SNCF.
 
+        Returns
+        ----------
+        result : Trajet
+            Le ou les trajets disponibles en fonction des critères préalablement renseignés
+        """
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
-        trajetclient= Trajetclient()
-        jour = self.trajet.date_depart[:2] # On tire les informations
-        mois = self.trajet.date_depart[3:5]# dont on a besoin 
-        annee = self.trajet.date_depart[6:10] # de l'attribut date_depart
+        trajetclient = Trajetclient()
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
-        trajets = trajetclient.get_trajets(annee, mois, jour, self.trajet.ville_depart, self.trajet.ville_arrivee,id_initial)
+        trajets = trajetclient.get_trajets2(self.ville_depart,id_initial)
         trajetdao.insert_trajets(trajets)
-        for j in trajets :
-            RechercheDAO().create(self.profil,j)
-        if self.trajet.heure_depart=='' :
-            resultat_req = trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
-        else :
-            resultat_req = trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
-        return resultat_req
+        # on discutera est ce qu'on va stocker les résultats
+        #for j in trajets :
+        #    RechercheDAO().create(self.profil,j)
+        #on a pas assez d'infos pour faire une select mais on va retourner directement trajets ou on dois ecrire une autre select
+        #resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+        result = trajetdao.find_disponibilite(self.date,self.ville_depart)
+        return result
+    
     
     def sauvegarder(self):
 
-        "Classe pour sauvegarder les trajets"
+        """Classe qui permet de sauvegarder les trajets trouvés par ce profil"""
 
-        return None
+        rechercheDAO.save(self.profil, self.trajet)
 
     def creer_alerte(self):
             # on crée un e-mail
@@ -101,6 +83,7 @@ class Recherche_aller(AbstractRecherche):
                 server.login("tgvmaximizer@gmail.com", "gfhd witr sapg frih")
                 # envoi du mail
                 server.sendmail("tgvmaximizer@gmail.com", self.recherche.profil.email, message.as_string())
+    
     
         
 

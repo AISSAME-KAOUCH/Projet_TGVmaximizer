@@ -12,7 +12,7 @@ class Trajetclient :
     """
 
     #def __init__(self) -> None:
-    #    self.__HOST = os.environ["HOST_WEBSERVICE"]
+    #    self.__HOST =os.environ["HOST_WEBSERVICE"]
 
     def get_trajets(self, annee, mois, jour, ville_d, ville_arrivee = None, id_initiale = None) :
         """ 
@@ -36,7 +36,8 @@ class Trajetclient :
         
         Returns 
         -------
-        None
+        trajets : Trajet
+            Les trajets correspondant aux critères de la recherche
         """
 
         req = requests.get(f"{HOST_WEBSERVICE}{END_POINT}&refine.date={annee}%2F{mois}%2F{jour}&refine.origine={ville_d}&refine.destination={ville_arrivee}")
@@ -52,6 +53,21 @@ class Trajetclient :
         return trajets
 
     def get_trajets2(self, ville_depart, id_initiale) :
+
+        """Fonction qui permet de récupérer les trajets si seule la ville de départ est renseignée
+        
+        Parameters 
+        ----------
+        ville_depart : str 
+            ville de laquelle part le train correspondant au trajet
+        id_initiale : int 
+            identifiant du trajet
+
+        Returns
+        -------
+        trajets : Trajet
+            Les trajets correspondant aux critères de la recherche
+        """
 
         req = requests.get(f"{HOST_WEBSERVICE}{END_POINT}&refine.origine={ville_depart}")
         dic=req.json()
