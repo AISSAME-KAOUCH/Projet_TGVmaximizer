@@ -13,6 +13,7 @@ class RechercheView(AbstractView):
                     'choices': [
                         'Recherche aller simple'
                         , 'Recherche aller retour'
+                        , 'Recherche des departs à 30 jours'
                         , 'Retour menu'
                     ]
                 }
@@ -31,6 +32,9 @@ class RechercheView(AbstractView):
         elif reponse['choice'] == 'Recherche aller retour':
             from views.aller_retour_view import AllerRetourView
             return AllerRetourView()
+        elif reponse['choice'] == 'Recherche des departs à 30 jours':
+            from views.affichage_30j_view import Recherche30jView
+            return MenuView()
         elif reponse['choice'] == 'Retour menu':
             from views.menu_view import MenuView
             return MenuView()

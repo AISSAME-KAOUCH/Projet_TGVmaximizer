@@ -1,7 +1,8 @@
 from PyInquirer import  prompt
 from views.abstract_view import AbstractView
 from views.session import Session
-from 
+from business_object.trajet import Trajet
+from business_object.profil import Profil
 class AllerRetourView(AbstractView):
     def __init__(self) -> None:
         self.__questions = [
@@ -75,7 +76,7 @@ class AllerRetourView(AbstractView):
         for trj in res1 :
             print(trj.__str__())
         for trj in res2: 
-            print(trj.__str__())
+            print(trj.__str())
         
         
         from views.menu_view import MenuView
