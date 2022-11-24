@@ -7,17 +7,52 @@ from business_object.profil import Profil
 
 class Recherche_aller(AbstractRecherche):
 
+    """ Classe pour effectuer une recherche aller seule"""
+
     def __init__(self, profil: Profil, trajet: Trajet) -> None:
+
+        """Constructeur pour la recherche aller simple*
+        
+        Parameters
+        ----------
+        profil : Profil
+            Le profil qui effectue la recherche
+        trajet : Trajet
+            Le trajet correspondant à la recherche
+        """
+
         super().__init__()
         self.profil = profil
         self.trajet = trajet
 
     def find_id_trajet(self,trajet : Trajet):
+
+        """Fonction pour trouver l'identifiant du trajet
+        
+        Parameters
+        ----------
+        trajet : Trajet
+            Le trajet correspondant à la recherche
+
+        Returns
+        ----------
+        id : str
+            L'identifiant correspodant au trajet
+        """
         trajetdao = TrajetDAO()
         id = trajetdao.find_id(trajet)
         return id
 
     def recherche(self):
+
+        """Classe pour effectuer la recherche aller simple
+        
+        Returns
+        --------
+        resultat_req : Trajet
+            Le(s) trajet(s) correspondant aux critères de recherche
+        """
+
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
         trajetclient= Trajetclient()
         jour = self.trajet.date_depart[:2] # On tire les informations
@@ -35,9 +70,15 @@ class Recherche_aller(AbstractRecherche):
         return resultat_req
     
     def sauvegarder(self):
+
+        "Classe pour sauvegarder les trajets"
+
         return None
 
     def creer_alerte(self, choix):
+
+        "Classe pour créer une alerte si un trajet correspondant aux critères est disponible"
+
         rechercheDAO.creer_alerte(self.trajet, self.profil)
 
     
