@@ -7,7 +7,6 @@ fastapi
 PyInquirer
 datetime
 re
-
-os (trajet_client, dbconnetion
-dotenv (dbconnetion
-psycopg2 (dbconnetion
+os (trajet_client, dbconnetion)
+dotenv (dbconnetion)
+psycopg2 (dbconnetion)

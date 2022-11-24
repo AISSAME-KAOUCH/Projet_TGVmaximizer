@@ -11,11 +11,11 @@ class Recherche_aller_retour(AbstractRecherche):
         super().__init__()
         self.trajet_aller = trajet_aller
         self.trajet_retour = trajet_retour
-        self.profil=profil
+        self.profil = profil
 
     def recherche(self):
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
-        trajetclient= Trajetclient()
+        trajetclient = Trajetclient()
         jour = self.trajet_aller.date_depart[:2] # On tire les informations
         mois = self.trajet_aller.date_depart[3:5]# dont on a besoin 
         annee = self.trajet_aller.date_depart[6:10] # de l'attribut date_depart

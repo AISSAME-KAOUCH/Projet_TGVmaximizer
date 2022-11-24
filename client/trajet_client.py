@@ -12,7 +12,7 @@ class Trajetclient :
     """
 
     #def __init__(self) -> None:
-    #    self.__HOST =os.environ["HOST_WEBSERVICE"]
+    #    self.__HOST = os.environ["HOST_WEBSERVICE"]
 
     def get_trajets(self, annee, mois, jour, ville_d, ville_arrivee = None, id_initiale = None) :
         """ 

@@ -14,7 +14,7 @@ class Recherche_30j(AbstractRecherche):
 
     def recherche(self):
         trajetdao = TrajetDAO() # On instancie les classes de la couche DAO
-        trajetclient= Trajetclient()
+        trajetclient = Trajetclient()
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
         trajets = trajetclient.get_trajets2(self.ville_depart,id_initial)
         trajetdao.insert_trajets(trajets)
