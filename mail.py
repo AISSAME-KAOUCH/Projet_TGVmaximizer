@@ -16,7 +16,7 @@ def creer_alerte(recherche, trajet):
     message["To"] = recherche.profil.email
 
     # on crée un texte et sa version HTML
-    texte = "Bonjour,\n\nVous avez récemment sauvegardé cette recherche sur notre application TGVMAXimizer :\n{} \n\nNous avons le plaisir de vous informer qu'une place correspondante est disponible :\n {} \n\n Bonne journée et bon voyage !".format(recherche.trajet.__str__(), trajet.__str__())
+    texte = "Bonjour,\n\n Vous avez récemment sauvegardé cette recherche sur notre application TGVMAXimizer: \n {} \n\n Nous avons le plaisir de vous informer qu'une place correspondante est disponible :\n {} \n\n Bonne journée et bon voyage !".format(recherche.trajet.__str__(), trajet.__str__())
 
     # on crée un élément MIMEText 
     texte_mime = MIMEText(texte, 'plain')

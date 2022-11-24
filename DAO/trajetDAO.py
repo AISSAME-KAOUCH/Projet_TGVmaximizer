@@ -170,6 +170,7 @@ class TrajetDAO(metaclass=Singleton):
                 res = cursor.fetchall()
 
         tjs=[]
+        
         if res :
             
             for t in res :

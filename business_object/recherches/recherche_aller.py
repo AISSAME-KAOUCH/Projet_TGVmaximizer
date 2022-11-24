@@ -25,7 +25,7 @@ class Recherche_aller(AbstractRecherche):
         self.profil = profil
         self.trajet = trajet
 
-    def find_id_trajet(self,trajet : Trajet):
+    def find_id_trajet(self, trajet: Trajet):
 
         """Fonction pour trouver l'identifiant du trajet
         
@@ -64,9 +64,9 @@ class Recherche_aller(AbstractRecherche):
         for j in trajets :
             RechercheDAO().create(self.profil,j)
         if self.trajet.heure_depart=='' :
-            resultat_req =trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
+            resultat_req = trajetdao.find_by_depart2(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
         else :
-            resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
+            resultat_req = trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
         return resultat_req
     
     def sauvegarder(self):
@@ -75,12 +75,32 @@ class Recherche_aller(AbstractRecherche):
 
         return None
 
-    def creer_alerte(self, choix):
+    def creer_alerte(self):
+            # on crée un e-mail
+            message = MIMEMultipart("alternative")
+            # on ajoute un sujet
+            message["Subject"] = "[TGVMAXimizer] Nouveau trajet disponible"
+            # un émetteur
+            message["From"] = "tgvmaximizer@gmail.com"
+            # un destinataire
+            message["To"] = self.recherche.profil.email
 
-        "Classe pour créer une alerte si un trajet correspondant aux critères est disponible"
+            # on crée un texte et sa version HTML
+            texte = "Bonjour,\n\n Vous avez récemment sauvegardé cette recherche sur notre application TGVMAXimizer: \n {} \n\n Nous avons le plaisir de vous informer qu'une place correspondante est disponible :\n {} \n\n Bonne journée et bon voyage !".format(self.recherche.trajet.__str__(), self.trajet.__str__())
 
-        rechercheDAO.creer_alerte(self.trajet, self.profil)
+            # on crée un élément MIMEText 
+            texte_mime = MIMEText(texte, 'plain')
 
+            # on attache cet élément 
+            message.attach(texte_mime)
+
+            # on crée la connexion
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            # connexion au compte
+                server.login("tgvmaximizer@gmail.com", "gfhd witr sapg frih")
+                # envoi du mail
+                server.sendmail("tgvmaximizer@gmail.com", self.recherche.profil.email, message.as_string())
     
         
 

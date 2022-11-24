@@ -6,13 +6,13 @@ class AbstractRecherche(ABC):
     def __init__(self) -> None:
         super().__init__()
     
-    def recherche(self, trajet):
+    def recherche(self):
         pass
     
-    def sauvegarder(self, trajet):
+    def sauvegarder(self):
         pass
 
-    def creer_alerte(self, choix):
+    def creer_alerte(self):
         pass
 
     def __str__(self) -> str:
