@@ -8,7 +8,7 @@ class AllerRetourView(AbstractView):
             {
                 'type': 'input',
                 'name': 'ville_depart',
-                'message': 'Quelle est la ville de depart ?',
+                'message': 'Quelle est la ville de depart ? (obligatoire)',
             },
             {
                 'type': 'input',
@@ -18,7 +18,7 @@ class AllerRetourView(AbstractView):
             {
                 'type': 'input',
                 'name': 'date_depart',
-                'message': 'Quel est la date de depart ? (facultatif)',
+                'message': 'Quelle est la date de depart ? (facultatif)',
             },
             {
                 'type': 'input',

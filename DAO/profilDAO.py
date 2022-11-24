@@ -4,14 +4,15 @@ import requests
 from utils.singleton import Singleton
 
 class ProfilDAO(metaclass=Singleton):
-
-    """Classe permettant la communication avec notre base de données en ce qui concerne les profils. 
+    """
+    Classe permettant la communication avec notre base de données en ce qui concerne les profils. 
     Elle permet de récupérer des profils depuis notre base de données mais aussi d'en ajouter
-    et de les modifier. """
+    et de les modifier. 
+    """
 
     def find_by_id(self, email : str) -> Profil:
-
-        """Fonction permettant de récupérer, dans la base de données, le profil correspondant 
+        """
+        Fonction permettant de récupérer, dans la base de données, le profil correspondant 
         à l'adresse mail donnée, et de stocker les informations de ce profil dans un objet Profil.
 
         Parameters
@@ -23,9 +24,7 @@ class ProfilDAO(metaclass=Singleton):
         ----------
         Profil : le profil associé à l'email recherché et contenant toutes les informations
         de l'utilisateur.
-
         """
-
         profil = None
 
         request = "SELECT * FROM profil " \
@@ -47,8 +46,8 @@ class ProfilDAO(metaclass=Singleton):
         return profil
 
     def modifier_mot_de_passe(self, profil_modifie: Profil):
-
-        """Fonction qui permet de modifier le mot de passe dans la base de données.
+        """
+        Fonction qui permet de modifier le mot de passe dans la base de données.
         
         Parameters
         ----------
@@ -60,7 +59,6 @@ class ProfilDAO(metaclass=Singleton):
         BOOL : True si la modification du mot de passe a bien été réalisée dans la base de données, 
         False sinon.
         """
-
         updated = False
         request = "UPDATE profil " \
                   "SET mot_de_passe = %(mdp)s" \
@@ -76,8 +74,8 @@ class ProfilDAO(metaclass=Singleton):
         return updated
 
     def modifier_profil(self, profil_modifie: Profil):
-
-        """Fonction qui permet de modifier le profil dans la base de données.
+        """
+        Fonction qui permet de modifier le profil dans la base de données.
         
         Parameters
         ----------
@@ -104,8 +102,8 @@ class ProfilDAO(metaclass=Singleton):
         return updated
     
     def create_profil(self, profil : Profil):
-
-        """Fonction qui permet de stocker dans la base de données un nouveau profil à partir
+        """
+        Fonction qui permet de stocker dans la base de données un nouveau profil à partir
         d'un objet métier Profil.
         
         Parameters
@@ -117,7 +115,6 @@ class ProfilDAO(metaclass=Singleton):
         -------
         None
         """
-        
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute('INSERT INTO profil (civilite, prenom, nom, date_de_naissance, email, mot_de_passe) '\

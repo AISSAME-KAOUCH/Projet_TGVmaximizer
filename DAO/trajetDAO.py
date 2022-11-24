@@ -4,13 +4,13 @@ import requests
 from utils.singleton import Singleton
 
 class TrajetDAO(metaclass=Singleton):
-    
-    """Classe permettant la communication avec notre base de données en ce qui concerne les trajets.
+    """
+    Classe permettant la communication avec notre base de données en ce qui concerne les trajets.
     Elle permet de récupérer des trajets depuis notre base de données mais aussi d'en ajouter. 
     """
     def find_max_id(self):
-
-        """Fonction qui permet de récupérer, dans notre base de données (table trajets), le dernier 
+        """
+        Fonction qui permet de récupérer, dans notre base de données (table trajets), le dernier 
         id utilisé pour créer l'id du trajet suivant. 
 
         Parameters
@@ -32,9 +32,9 @@ class TrajetDAO(metaclass=Singleton):
                 resultat['maximum']=0
             return resultat['maximum']
 
-    def find_by_depart(self, date_depart : str,heure_depart : str,ville_depart : str,ville_arrivee : str ) -> Trajet:
-
-        """Fonction permettant de récupérer, dans la base de données, les trajets
+    def find_by_depart(self, date_depart: str, heure_depart: str, ville_depart: str, ville_arrivee: str ) -> Trajet:
+        """
+        Fonction permettant de récupérer, dans la base de données, les trajets
         correspondant aux informations données, et de stocker les informations de ces trajets
         dans des objets Trajets.
 
@@ -84,8 +84,8 @@ class TrajetDAO(metaclass=Singleton):
         return tjs 
 
     def find_disponibilite(self, date_depart : str,ville_depart : str ) -> Trajet:
-
-        """Fonction permettant de récupérer, dans la base de données, les trajets
+        """
+        Fonction permettant de récupérer, dans la base de données, les trajets
         correspondant aux informations données, et de stocker les informations de ces trajets
         dans des objets Trajets.
 

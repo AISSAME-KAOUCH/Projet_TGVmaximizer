@@ -35,8 +35,7 @@ class Recherche_aller(AbstractRecherche):
         return None
 
     def creer_alerte(self, choix):
-        if choix == "oui":
-            rechercheDAO.creer_alerte(self.trajet, self.profil)
+        rechercheDAO.creer_alerte(self.trajet, self.profil)
 
     
         

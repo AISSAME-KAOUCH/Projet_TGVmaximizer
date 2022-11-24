@@ -6,7 +6,7 @@ from client.trajet_client import Trajetclient
 from business_object.profil import Profil
 class Recherche_30j(AbstractRecherche):
 
-    def __init__(self, profil: Profil, ville_depart, date) -> None:
+    def __init__(self, profil, ville_depart, date):
         super().__init__()
         self.profil = profil
         self.ville_depart = ville_depart
@@ -30,9 +30,8 @@ class Recherche_30j(AbstractRecherche):
     def sauvegarder(self):
         rechercheDAO.save(self.profil, self.trajet)
 
-    def creer_alerte(self, choix):
-        if choix == "oui":
-            rechercheDAO.creer_alerte(self.trajet, self.profil)
+    def creer_alerte(self):
+        rechercheDAO.creer_alerte(self.trajet, self.profil)
     
     
         

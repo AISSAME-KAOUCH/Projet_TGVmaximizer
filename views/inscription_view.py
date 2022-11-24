@@ -70,7 +70,9 @@ class InscriptionView(AbstractView):
                     else : 
                         print("Adresse mail incorrecte")
                 else:
-                    print("Vous n'êtes pas éligibles à TGVMax" )              
+                    print("Vous n'êtes pas éligibles à TGVMax" ) 
+                    from views.start_view import StartView
+                    return StartView()             
             else : 
                 print("Format de la date incorrect")
         else:
