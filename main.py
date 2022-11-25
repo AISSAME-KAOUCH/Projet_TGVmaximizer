@@ -5,7 +5,7 @@ from DAO.trajetDAO import TrajetDAO
 from business_object.recherches.recherche_aller import Recherche_aller
 from business_object.profil import Profil
 from DAO.rechercheDAO import RechercheDAO 
-from business_object.recherches.recherche_30j import Recherche_30j
+from business_object.recherches.recherche_disponibilite import Recherche_disponibilite
 from business_object.recherches.recherche_aller_retour import Recherche_aller_retour
 if __name__ == '__main__':
 
