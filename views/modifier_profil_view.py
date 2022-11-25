@@ -2,6 +2,8 @@ from PyInquirer import Separator, prompt
 from views.abstract_view import AbstractView
 from views.session import Session
 from DAO.profilDAO import ProfilDAO
+from hashlib import sha256
+import getpass
 
 class ModifierView(AbstractView):
 
@@ -74,6 +76,7 @@ class ModifierView(AbstractView):
         
         elif reponse['choice'] == 'Modifier mot de passe':
             #res = prompt(modifier)
+            salt = Session().profil.email
             mdp = sha256(getpass.getpass(' Entrez le nouveau mot de passe : ').encode() + salt.encode()).hexdigest()
             Session().profil.modifier_mdp(mdp)
             ProfilDAO().modifier_mot_de_passe(Session().profil)
