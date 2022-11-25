@@ -136,7 +136,7 @@ class Profil :
         """
         self._date_de_naissance = dt.datetime.strptime(self._date_de_naissance,'%d-%m-%Y').date()
         age = (dt.date.today() - self._date_de_naissance).days
-        if age > 5840 and age < 9855 : # = ou >= ?
+        if age > 5840 and age < 9855 : 
             res = 'jeune'
         elif age > 21900 :
             res = 'senior'

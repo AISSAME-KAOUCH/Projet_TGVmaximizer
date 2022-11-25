@@ -42,20 +42,10 @@ class Recherche_disponibilite(AbstractRecherche):
         id_initial = trajetdao.find_max_id() # On cherche l'identifiant de la dernière ligne de notre base de données
         trajets = trajetclient.get_trajets2(self.ville_depart,id_initial)
         trajetdao.insert_trajets(trajets)
-        # on discutera est ce qu'on va stocker les résultats
-        #for j in trajets :
-        #    RechercheDAO().create(self.profil,j)
-        #on a pas assez d'infos pour faire une select mais on va retourner directement trajets ou on dois ecrire une autre select
-        #resultat_req =trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)
         result = trajetdao.find_disponibilite(self.date,self.ville_depart)
         return result
     
     
-    def sauvegarder(self):
-
-        """Classe qui permet de sauvegarder les trajets trouvés par ce profil"""
-
-        rechercheDAO.save(self.profil, self.trajet)
 
     def creer_alerte(self):
             # on crée un e-mail

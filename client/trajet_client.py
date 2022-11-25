@@ -11,9 +11,6 @@ class Trajetclient :
     Classe qui permet de communiquer avec l'API SNCF et de récupérer les trajets.
     """
 
-    #def __init__(self) -> None:
-    #    self.__HOST =os.environ["HOST_WEBSERVICE"]
-
     def get_trajets(self, annee, mois, jour, ville_d, ville_arrivee = None, id_initiale = None) :
         """ 
         Fonction qui permet de récupérer les trajets sur l'API SNCF correspondant aux critères
@@ -46,7 +43,6 @@ class Trajetclient :
         trajets=[]
         j=id_initiale+1
         for i in resultat :
-            #print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
             tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['heure_arrivee'],i['fields']['train_no'],i['fields']['od_happy_card'])
             trajets.append(tj)  
             j+=1
@@ -75,7 +71,6 @@ class Trajetclient :
         trajets=[]
         j=id_initiale+1
         for i in resultat :
-            #print((i['fields']['origine'],i['fields']['destination'],i['fields']['heure_depart'],i['fields']['heure_arrivee']))
             tj=Trajet(j,i['fields']['origine'],i['fields']['date'],i['fields']['heure_depart'],i['fields']['destination'],i['fields']['heure_arrivee'],i['fields']['train_no'],i['fields']['od_happy_card'])
             trajets.append(tj)  
             j+=1

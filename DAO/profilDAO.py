@@ -125,4 +125,3 @@ class ProfilDAO(metaclass=Singleton):
                         , "date_de_naissance" : profil._date_de_naissance
                         , "email": profil.email
                         , "mot_de_passe": profil._mot_de_passe})
-                #res = cursor.fetchall()

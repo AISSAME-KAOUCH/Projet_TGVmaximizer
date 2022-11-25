@@ -17,41 +17,31 @@ class RechercheDAO(metaclass=Singleton):
                     , "heure" : trajet.heure_depart
                     , "ville_de_depart" : trajet.ville_depart})
 
-    def delete(self, recherche) : 
+    def delete(self) : 
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("DELETE FROM recherche WHERE id = %(id)s and email = %(email)s "\
-                    , {"id" : trajet.id
-                    , "email" : profil._email})
+                    , {"id" : self.trajet.id
+                    , "email" : self.profil.email})
 
-    def save(self, profil: Profil, trajet) :
-        self.create(profil, trajet)
-
-    def find_by_id(self, trajet : Trajet):
-        with DBConnection().connection as connection :
-            with connection.cursor() as cursor :
-                cursor.execute("SELECT * FROM recherche JOIN trajet ON trajet.id = recherche.id "\
-                    "WHERE recherche.id = %(id)s"
-                    , {"id": trajet.id})
-        return cursor.fetchall()
 
     
-    def update(self, recherche):
+    def update(self):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET email = %(email)s, date = %(date)s, heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
                     "WHERE id = %(id)s"\
-                    , {"email" : recherche.email
-                    , "date" : recherche.date
-                    , "heure" : recherche.heure
-                    ,"ville_de_depart" : recherche.depart})
+                    , {"email" : self.profil.email
+                    , "date" : self.trajet.date
+                    , "heure" : self.trajet.heure_depart
+                    ,"ville_de_depart" : self.trajet.ville_depart})
 
-    def creer_alerte(self, recherche, choix : str):
+    def creer_alerte(self, choix : str):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET choix_alerte = %(choix)s"\
                     "WHERE id = %(id)s"\
                     , {'choix': choix
-                    , 'id' : recherche.id})
+                    , 'id' : self.trajet.id})
 #creer colonne alerte
 

@@ -69,11 +69,7 @@ class Recherche_aller_retour(AbstractRecherche):
         # Affichage intégré         
         return (resultat_req1,resultat_req2)
     
-    def sauvegarder(self):
 
-        """Classe pour sauvegarder les trajets associés au profil"""
-
-        rechercheDAO.sauvegarder(self.trajet, self.profil)
     
     def creer_alerte(self):
             # on crée un e-mail

@@ -69,11 +69,6 @@ class Recherche_aller(AbstractRecherche):
             resultat_req = trajetdao.find_by_depart(self.trajet.date_depart, self.trajet.heure_depart, self.trajet.ville_depart, self.trajet.ville_arrivee)           
         return resultat_req
     
-    def sauvegarder(self):
-
-        "Classe pour sauvegarder les trajets"
-
-        return None
 
     def creer_alerte(self):
             # on crée un e-mail
