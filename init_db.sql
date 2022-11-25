@@ -1,6 +1,7 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+DROP TABLE IF EXISTS profil CASCADE ;
 CREATE TABLE profil (
     civilite TEXT, 
     prenom TEXT,  
@@ -10,6 +11,7 @@ CREATE TABLE profil (
     mot_de_passe TEXT
     );
 
+DROP TABLE IF EXISTS trajet CASCADE ;
 CREATE TABLE trajet (
     id INT PRIMARY KEY , 
     date DATE, 
@@ -22,28 +24,14 @@ CREATE TABLE trajet (
     );
 
 
+DROP TABLE IF EXISTS recherche CASCADE ;
 CREATE TABLE recherche (
     id INT REFERENCES trajet(id),
     email TEXT REFERENCES profil(email),
+    date DATE ,
     heure_depart TIME, 
-    ville_depart TEXT, 
-    ville_arrivee TEXT, 
-    numero_train INT, 
-    heure_arrivee TIME, 
-    disponibilite_max TEXT,
-    alerte BOOLEAN, 
+    ville_depart TEXT,   
     CONSTRAINT pk_recherche PRIMARY KEY(id, email)
     );
 
 
-
-"""
-INSERT INTO trajet(date, heure_depart, ville_depart, ville_arrivee, numero_train, heure_arrivee, disponibilite_max) VALUES
-('02/03/2021','12:00:00' , 'BRUZ', 'RENNES', 105, '13:00:00', TRUE);
-
-INSERT INTO profil(email, nom, prenom, mot_de_passe, civilite, date_de_naissance) VALUES
-('jules@gmail.com', 'Jules', 'Lejas', 'mdp', 'H','02/03/2001');
-
-INSERT INTO recherche(email, id) VALUES 
-('jules@gmail.com', 1);
-"""
