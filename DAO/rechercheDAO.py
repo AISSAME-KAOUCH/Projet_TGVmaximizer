@@ -6,7 +6,13 @@ from utils.singleton import Singleton
 from business_object.trajet import Trajet
 
 class RechercheDAO(metaclass=Singleton):
+
+    """Classe qui permet d'effectuer une recherche via la DAO"""
+
     def create(self, profil : Profil, trajet : Trajet) :
+
+        """Fonction créer la recherche associée au profil"""
+
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("INSERT INTO recherche(id, email, date, heure_depart, ville_depart)"\
@@ -18,6 +24,9 @@ class RechercheDAO(metaclass=Singleton):
                     , "ville_de_depart" : trajet.ville_depart})
 
     def delete(self) : 
+
+        """Fonction pour supprimer une recherche"""
+
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("DELETE FROM recherche WHERE id = %(id)s and email = %(email)s "\
@@ -27,6 +36,9 @@ class RechercheDAO(metaclass=Singleton):
 
     
     def update(self):
+
+        """Fonction pour mettre à jour une recherche"""
+
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET email = %(email)s, date = %(date)s, heure = %(heure)s, ville_de_depart = %(ville_de_depart)s"\
@@ -37,6 +49,9 @@ class RechercheDAO(metaclass=Singleton):
                     ,"ville_de_depart" : self.trajet.ville_depart})
 
     def creer_alerte(self, choix : str):
+
+        """Fonction pour savoir si l'utilisateur souhaite être alerté si un nouveau trajet se libère"""
+
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("UPDATE recherche SET choix_alerte = %(choix)s"\
