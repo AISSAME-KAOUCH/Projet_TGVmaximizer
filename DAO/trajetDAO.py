@@ -109,7 +109,7 @@ class TrajetDAO(metaclass=Singleton):
 
         request = "SELECT * FROM trajet " \
                   "WHERE date = %(date_depart)s"\
-                  "and ville_depart=%(ville_depart)s and  ville_arrivee=%(ville_arrivee)s and disponibilite_max='OUI'"
+                  "and ville_depart = %(ville_depart)s and ville_arrivee = %(ville_arrivee)s and disponibilite_max = 'OUI'"
 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -134,7 +134,7 @@ class TrajetDAO(metaclass=Singleton):
                 
         return tjs
 
-    def find_disponibilite(self, date_depart : str,ville_depart : str ) -> Trajet:
+    def find_disponibilite(self, date_depart : str, ville_depart : str ) -> Trajet:
         """
         Fonction permettant de récupérer, dans la base de données, les trajets
         correspondant aux informations données, et de stocker les informations de ces trajets
@@ -189,7 +189,7 @@ class TrajetDAO(metaclass=Singleton):
 
 
 
-    def insert_trajets(self,trajets):
+    def insert_trajets(self, trajets):
         
         """Fonction qui permet de stocker dans la base de données de nouveau trajets à partir
         d'objets métiers Trajet.
@@ -218,7 +218,8 @@ class TrajetDAO(metaclass=Singleton):
                             , "numero_train" : trajets[i].numero_train
                             , "disponibilite_max" : trajets[i].disponibilite_max
                             })
-    def find_id(self,trajet : Trajet):
+
+    def find_id(self, trajet : Trajet):
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute('SELECT id FROM trajet WHERE id =  %(id)s'\
