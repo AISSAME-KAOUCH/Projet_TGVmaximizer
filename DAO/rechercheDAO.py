@@ -6,7 +6,7 @@ from utils.singleton import Singleton
 from business_object.trajet import Trajet
 
 class RechercheDAO(metaclass=Singleton):
-    def create(self,profil : Profil, trajet : Trajet) :
+    def create(self, profil : Profil, trajet : Trajet) :
         with DBConnection().connection as connection :
             with connection.cursor() as cursor :
                 cursor.execute("INSERT INTO recherche(id, email, date, heure_depart, ville_depart)"\

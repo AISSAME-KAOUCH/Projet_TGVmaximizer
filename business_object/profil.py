@@ -31,7 +31,6 @@ class Profil :
         self._date_de_naissance = date_de_naissance
         self.email = email
         self._mot_de_passe = mot_de_passe
-        self._recherches = []
     
     def modifier_civilite(self, civilite):
         """ 
@@ -78,7 +77,7 @@ class Profil :
         """
         self._nom = nom
     
-    def modifier_mdp(self, new_pass):
+    def modifier_mdp(self, mdp):
         """ 
         Fonction permettant de modifier le mot de passe de l'utilisateur
 
@@ -91,7 +90,7 @@ class Profil :
         -------
             None
         """
-        self._mot_de_passe = new_pass
+        self._mot_de_passe = mdp
     
 
     def modifier_profil(self):
@@ -143,10 +142,6 @@ class Profil :
         else : 
             res = 'pas éligible'
         return res 
-
-    def ajouter_recherche(self, recherche):
-        self._recherches.append(recherche)
-        recherche.sauvegarder()
 
 
     def __str__(self): 
