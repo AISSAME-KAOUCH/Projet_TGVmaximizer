@@ -68,13 +68,17 @@ class AllerRetourView(AbstractView):
         profil = Profil(Session().profil._civilite,Session().profil._prenom,Session().profil._nom,Session().profil._date_de_naissance,Session().profil.email,Session().profil._mot_de_passe)
         (res1,res2) = Recherche_aller_retour(profil, Session().trajet_aller, Session().trajet_retour).recherche()
         
+        print('-------------------Trajets aller-----------------------')
         if len(res1) == 0 :
             print('Pas de trajet aller corespondant à votre recherche')
-        if len(res2) == 0 :
-            print('Pas de trajet retour corespondant à votre recherche')
         
+        
+
         for trj in res1 :
             print(trj.__str__())
+        print('-------------------Trajets retour-----------------------')   
+        if len(res2) == 0 :
+            print('Pas de trajet retour corespondant à votre recherche')
         for trj in res2: 
             print(trj.__str__())
         
